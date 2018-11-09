@@ -14,8 +14,6 @@ import com.example.zhangzihao.secondhand.R;
 public class FlashActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-    private static final int GOON = 0;
-    private static final int STOP = 1;
 
 
     //用于跳转的按钮
