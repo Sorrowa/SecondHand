@@ -1,6 +1,7 @@
 package com.example.zhangzihao.secondhand.View;
 
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -14,10 +15,14 @@ public class MainActivity extends AppCompatActivity {
 
     private TabLayout mtabLayout;
 
+    private ViewPager viewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initViewPager();
 
         initViewPointer();
         initTab();
@@ -25,13 +30,48 @@ public class MainActivity extends AppCompatActivity {
 
         //todo:创建BasePresenter接口
         //todo:创建数据处理类，接受以上接口
-        //
     }
 
     /**
-     *
+     * 初始化viewPager
+     */
+    private void initViewPager() {
+        viewPager=findViewById(R.id.viewPager);
+        //todo:绑定具体的fragment
+    }
+
+    /**
+     * 所有关于tablayout的初始化工作都在此方法中
+     * 初始化点击事件
      */
     private void initTab() {
+
+        //todo:设置viewPager和tablayout的关联
+        mtabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                //todo:切换viewPager
+                //第二个参数为平滑滚动
+                viewPager.setCurrentItem(tab.getPosition(),true);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+
+
+
+        //todo:ViewPager滑动绑定tabLayout
+        viewPager.addOnPageChangeListener(new
+                TabLayout.TabLayoutOnPageChangeListener(mtabLayout));
     }
 
     /**
