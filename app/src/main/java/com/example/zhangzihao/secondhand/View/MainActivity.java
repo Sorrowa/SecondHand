@@ -1,11 +1,15 @@
 package com.example.zhangzihao.secondhand.View;
 
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.zhangzihao.secondhand.Adapter.MainViewPagerAdapter;
 import com.example.zhangzihao.secondhand.R;
+
+import java.util.ArrayList;
 
 /**
  * 此活动作为承载其他所有活动的基础存在
@@ -16,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout mtabLayout;
 
     private ViewPager viewPager;
+    //存储fragment信息
+    private ArrayList<Fragment>fragments=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
     private void initViewPager() {
         viewPager=findViewById(R.id.viewPager);
         //todo:绑定具体的fragment
+
+
+
+        //以上
+        MainViewPagerAdapter adapter=new MainViewPagerAdapter(getSupportFragmentManager()
+                ,fragments);
+        viewPager.setAdapter(adapter);
     }
 
     /**
