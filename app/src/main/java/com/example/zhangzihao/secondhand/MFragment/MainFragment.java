@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.zhangzihao.secondhand.Adapter.MyAdapterForMainRecycleView;
 import com.example.zhangzihao.secondhand.Model.Book;
 import com.example.zhangzihao.secondhand.R;
 
@@ -33,6 +35,7 @@ public class MainFragment extends Fragment {
     private EditText meditText;
     private Button button;
     private View view;
+    private MyAdapterForMainRecycleView reAdapter;
 
     private ArrayList<Book> books=new ArrayList<>();
 
@@ -66,6 +69,7 @@ public class MainFragment extends Fragment {
             public void onClick(View v) {
                 books.addAll(tool.seekForBookInfo());
                 //可以在子线程中更新线程
+                mrecyclerView.invalidate();
                 view.postInvalidate();
             }
         });
@@ -76,6 +80,12 @@ public class MainFragment extends Fragment {
      * 初始化RecycleView，用作显示图片列表
      */
     private void initRecycleView() {
+
+       mrecyclerView.setLayoutManager(new LinearLayoutManager(context));
+       //获取book展示列表
+       books=tool.getBookInfo();
+       reAdapter=new MyAdapterForMainRecycleView(context,books);
+       mrecyclerView.setAdapter(reAdapter);
     }
 
 

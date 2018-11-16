@@ -12,6 +12,7 @@ import java.util.ArrayList;
 /**
  * viewPager的适配器
  */
+//todo:设置传入参数。
 public class MainViewPagerAdapter extends FragmentPagerAdapter {
 
     private ArrayList<Fragment> fragments;
