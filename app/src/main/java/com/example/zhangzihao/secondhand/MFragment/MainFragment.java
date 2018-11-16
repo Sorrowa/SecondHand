@@ -1,5 +1,6 @@
 package com.example.zhangzihao.secondhand.MFragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -25,11 +26,9 @@ import java.util.ArrayList;
  */
 public class MainFragment extends Fragment {
 
-    //单例模式
-    private static MainFragment one;
 
-    private MainActivity context;
-    private MainFragmentInterface tool;
+    private static MainActivity context;
+    private static MainFragmentInterface tool;
 
     //界面元素
     private RecyclerView mrecyclerView;
@@ -38,20 +37,20 @@ public class MainFragment extends Fragment {
     private View view;
     private MyAdapterForMainRecycleView reAdapter;
 
-    private ArrayList<Book> books=new ArrayList<>();
+    private ArrayList<Book> books = new ArrayList<>();
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view=inflater.inflate(R.layout.main_fragment_layout,container
-                ,false);
+        View view = inflater.inflate(R.layout.main_fragment_layout, container
+                , false);
 
-        this.view=view;
-        mrecyclerView=view.findViewById(R.id.booklist);
-        meditText=view.findViewById(R.id.search_text);
-        button=view.findViewById(R.id.button_search);
+        this.view = view;
+        mrecyclerView = view.findViewById(R.id.booklist);
+        meditText = view.findViewById(R.id.search_text);
+        button = view.findViewById(R.id.button_search);
 
         //界面初始化
         initOtherView();
@@ -82,31 +81,32 @@ public class MainFragment extends Fragment {
      */
     private void initRecycleView() {
 
-       mrecyclerView.setLayoutManager(new LinearLayoutManager(context));
-       //获取book展示列表
-       books=context.getBookInfo();
+        mrecyclerView.setLayoutManager(new LinearLayoutManager(context));
+        //获取book展示列表
+        books = context.getBookInfo();
 
-       reAdapter=new MyAdapterForMainRecycleView(context,books);
-       mrecyclerView.setAdapter(reAdapter);
+        reAdapter = new MyAdapterForMainRecycleView(context, books);
+        mrecyclerView.setAdapter(reAdapter);
     }
 
 
     /**
      * 设置所有的参数
+     *
      * @param tool 数据获取接口
      */
-    public void setInfo(MainFragmentInterface tool){
-        this.tool=tool;
+    public static void setInfo(MainFragmentInterface tool, Context context) {
+
+        MainFragment.tool = tool;
         //直接获取上下文,可以用它调用活动中的接口（注意强制类型转换）
-        context= (MainActivity) getActivity();
+        MainFragment.context = (MainActivity) context;
     }
 
 
-
-
-    public interface MainFragmentInterface{
+    public interface MainFragmentInterface {
         /**
          * 搜索图书网络信息
+         *
          * @return 返回获取（已经被处理好）的书籍信息
          */
         ArrayList<Book> seekForBookInfo();

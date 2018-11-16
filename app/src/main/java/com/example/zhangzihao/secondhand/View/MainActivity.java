@@ -53,9 +53,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Main
         viewPager=findViewById(R.id.viewPager);
         //todo:绑定具体的fragment到fragments中
         //主界面fragment
+        MainFragment.setInfo(this,this);
         mainFragmentPresenter=new MainFragmentPresenter();
         MainFragment mainFragment=new MainFragment();
-        mainFragment.setInfo(this);
         fragments.add(mainFragment);
         //todo:之后的碎片添加都做在这！！邓衍翔你看到了吗！！
 
