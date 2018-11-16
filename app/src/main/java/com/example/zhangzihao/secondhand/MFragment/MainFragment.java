@@ -1,12 +1,12 @@
 package com.example.zhangzihao.secondhand.MFragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +14,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.zhangzihao.secondhand.Adapter.MyAdapterForMainRecycleView;
-import com.example.zhangzihao.secondhand.Model.Book;
+import com.example.zhangzihao.secondhand.JavaBean.Book;
 import com.example.zhangzihao.secondhand.R;
+import com.example.zhangzihao.secondhand.View.MainActivity;
 
 import java.util.ArrayList;
 
@@ -27,7 +28,7 @@ public class MainFragment extends Fragment {
     //单例模式
     private static MainFragment one;
 
-    private Context context;
+    private MainActivity context;
     private MainFragmentInterface tool;
 
     //界面元素
@@ -83,7 +84,8 @@ public class MainFragment extends Fragment {
 
        mrecyclerView.setLayoutManager(new LinearLayoutManager(context));
        //获取book展示列表
-       books=tool.getBookInfo();
+       books=context.getBookInfo();
+
        reAdapter=new MyAdapterForMainRecycleView(context,books);
        mrecyclerView.setAdapter(reAdapter);
     }
@@ -91,12 +93,12 @@ public class MainFragment extends Fragment {
 
     /**
      * 设置所有的参数
-     * @param context 上下文
      * @param tool 数据获取接口
      */
-    public void setInfo(Context context,MainFragmentInterface tool){
-        this.context=context;
+    public void setInfo(MainFragmentInterface tool){
         this.tool=tool;
+        //直接获取上下文,可以用它调用活动中的接口（注意强制类型转换）
+        context= (MainActivity) getActivity();
     }
 
 
@@ -107,14 +109,7 @@ public class MainFragment extends Fragment {
          * 搜索图书网络信息
          * @return 返回获取（已经被处理好）的书籍信息
          */
-        public ArrayList<Book> seekForBookInfo();
-
-        /**
-         * 获取图书数据信息
-         * @return 书籍信息
-         */
-        public ArrayList<Book> getBookInfo();
-
+        ArrayList<Book> seekForBookInfo();
 
     }
 }

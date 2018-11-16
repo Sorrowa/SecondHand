@@ -11,7 +11,8 @@ import android.widget.Button;
 
 import com.example.zhangzihao.secondhand.R;
 
-public class FlashActivity extends AppCompatActivity implements View.OnClickListener {
+public class FlashActivity extends AppCompatActivity implements View.OnClickListener
+        ,BaseView{
 
 
 

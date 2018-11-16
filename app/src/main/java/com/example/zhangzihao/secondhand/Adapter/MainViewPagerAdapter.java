@@ -20,8 +20,7 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
     public MainViewPagerAdapter(FragmentManager fragmentManager,
                                 ArrayList<Fragment> fragments){
         super(fragmentManager);
-        fragments=new ArrayList<>();
-        this.fragments.addAll(fragments);
+        this.fragments=fragments;
 
     }
 

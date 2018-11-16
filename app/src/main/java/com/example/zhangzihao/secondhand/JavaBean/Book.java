@@ -1,4 +1,4 @@
-package com.example.zhangzihao.secondhand.Model;
+package com.example.zhangzihao.secondhand.JavaBean;
 
 import android.graphics.drawable.Drawable;
 
