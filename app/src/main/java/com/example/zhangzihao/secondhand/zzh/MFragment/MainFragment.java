@@ -16,7 +16,7 @@ import android.widget.EditText;
 import com.example.zhangzihao.secondhand.zzh.Adapter.MyAdapterForMainRecycleView;
 import com.example.zhangzihao.secondhand.JavaBean.Book;
 import com.example.zhangzihao.secondhand.R;
-import com.example.zhangzihao.secondhand.zzh.View.MainActivity;
+import com.example.zhangzihao.secondhand.MainActivity;
 
 import java.util.ArrayList;
 

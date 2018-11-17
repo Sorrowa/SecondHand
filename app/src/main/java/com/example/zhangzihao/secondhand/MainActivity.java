@@ -1,4 +1,4 @@
-package com.example.zhangzihao.secondhand.zzh.View;
+package com.example.zhangzihao.secondhand;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -6,11 +6,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.zhangzihao.secondhand.syf.Fragment.InfoFragment;
 import com.example.zhangzihao.secondhand.zzh.Adapter.MainViewPagerAdapter;
 import com.example.zhangzihao.secondhand.zzh.MFragment.MainFragment;
 import com.example.zhangzihao.secondhand.JavaBean.Book;
 import com.example.zhangzihao.secondhand.zzh.Presenter.MainFragmentPresenter;
 import com.example.zhangzihao.secondhand.R;
+import com.example.zhangzihao.secondhand.zzh.View.BaseView;
 
 import java.util.ArrayList;
 
@@ -18,7 +20,7 @@ import java.util.ArrayList;
  * 主活动o(￣ヘ￣o#)
  */
 public class MainActivity extends AppCompatActivity implements MainFragment.MainFragmentInterface
-        ,BaseView{
+        ,BaseView {
 
 
     private TabLayout mtabLayout;
@@ -59,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.Main
         fragments.add(mainFragment);
         //todo:之后的碎片添加都做在这！！邓衍翔你看到了吗！！
 
+        //个人信息界面fragment
+        InfoFragment infoFragment = new InfoFragment();
+        fragments.add(infoFragment);
 
         //以上
         MainViewPagerAdapter adapter=new MainViewPagerAdapter(getSupportFragmentManager()
