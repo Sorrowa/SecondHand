@@ -1,8 +1,8 @@
-package com.example.zhangzihao.secondhand.Model;
+package com.example.zhangzihao.secondhand.zzh.Model;
 
 import android.util.Log;
 
-import com.example.zhangzihao.secondhand.InternetInterfaceSet.MainGetBookInterface;
+import com.example.zhangzihao.secondhand.zzh.InternetInterfaceSet.MainGetBookInterface;
 import com.example.zhangzihao.secondhand.JavaBean.Book;
 
 import java.util.ArrayList;

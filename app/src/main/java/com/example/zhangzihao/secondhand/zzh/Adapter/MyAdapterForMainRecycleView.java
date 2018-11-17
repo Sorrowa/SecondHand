@@ -1,4 +1,4 @@
-package com.example.zhangzihao.secondhand.Adapter;
+package com.example.zhangzihao.secondhand.zzh.Adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

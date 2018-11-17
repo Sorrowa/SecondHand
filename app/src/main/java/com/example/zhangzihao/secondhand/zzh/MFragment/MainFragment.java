@@ -1,4 +1,4 @@
-package com.example.zhangzihao.secondhand.MFragment;
+package com.example.zhangzihao.secondhand.zzh.MFragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,17 +7,16 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.zhangzihao.secondhand.Adapter.MyAdapterForMainRecycleView;
+import com.example.zhangzihao.secondhand.zzh.Adapter.MyAdapterForMainRecycleView;
 import com.example.zhangzihao.secondhand.JavaBean.Book;
 import com.example.zhangzihao.secondhand.R;
-import com.example.zhangzihao.secondhand.View.MainActivity;
+import com.example.zhangzihao.secondhand.zzh.View.MainActivity;
 
 import java.util.ArrayList;
 

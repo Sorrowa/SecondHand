@@ -1,4 +1,4 @@
-package com.example.zhangzihao.secondhand.View;
+package com.example.zhangzihao.secondhand.zzh.View;
 
 import android.content.Context;
 import android.content.Intent;

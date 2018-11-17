@@ -1,4 +1,4 @@
-package com.example.zhangzihao.secondhand.Model;
+package com.example.zhangzihao.secondhand.zzh.Model;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
