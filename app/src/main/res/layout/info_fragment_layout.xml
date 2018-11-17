@@ -36,15 +36,53 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
-                    <TextView
+                    <android.support.v7.widget.Toolbar
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:id="@+id/info_tile"
-                        android:text="个人信息"
-                        android:textSize="20sp"
-                        android:gravity="center"
-                        android:layout_marginTop="20dp"
-                        android:textColor="@color/white"/>
+                        android:layout_height="wrap_content"
+                        android:id="@+id/info_toolbar"
+                        app:contentInsetStart="0dp">
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="20dp"
+                                android:id="@+id/info_tile"
+                                android:text="个人中心"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:textColor="@color/white"/>
+                            <ImageView
+                                android:id="@+id/info_settings"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="end"
+                                android:gravity="center"
+                                android:layout_marginTop="20dp"
+                                android:src="@drawable/ic_action_setting" />
+                        </FrameLayout>
+
+                    </android.support.v7.widget.Toolbar>
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="horizontal">-->
+                        <!--<TextView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="50dp"-->
+                            <!--android:id="@+id/info_tile"-->
+                            <!--android:text="个人信息"-->
+                            <!--android:textSize="20sp"-->
+                            <!--android:gravity="center"-->
+                            <!--android:layout_marginTop="20dp"-->
+                            <!--android:textColor="@color/white"/>-->
+                        <!--<ImageView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:src="@drawable/ic_action_setting"/>-->
+                    <!--</LinearLayout>-->
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
@@ -60,6 +98,13 @@
                         android:text="账号397655952@qq.com"
                         android:textSize="18sp"
                         android:textColor="@color/white"/>
+                    <Button
+                        android:id="@+id/goto_login"
+                        android:layout_width="150dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:text="点我登录哦"
+                        android:textSize="22sp" />
                 </LinearLayout>
             </FrameLayout>
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -73,5 +118,6 @@
         android:src="@mipmap/default_head"
         app:layout_anchor="@id/info_appBar"
         app:layout_anchorGravity="bottom|end"/>
+
 
 </android.support.design.widget.CoordinatorLayout>
