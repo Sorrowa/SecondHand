@@ -9,6 +9,7 @@ public class URL {
     public static String USER = ROOT + "/user";
     public static String USER_LOGIN = USER + "/login";
     public static String USER_SIGN = USER + "/signUp";
+    public static String USER_SELECT = USER + "/selectByEmail";
 
     public static String BOOK = ROOT + "/book";
     public static String BOOK_PUBLISH = BOOK + "/publish";

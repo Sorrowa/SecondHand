@@ -1,6 +1,8 @@
 package com.example.zhangzihao.secondhand.JavaBean;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private Integer userId;
     private String name;
     private String email;
@@ -11,7 +13,7 @@ public class User {
     private String signature;
     private String sex;
 
-    public Integer getId() {
+    public Integer getUserId() {
         return userId;
     }
 
@@ -27,7 +29,7 @@ public class User {
         return pwd;
     }
 
-    public String getPath() {
+    public String getHeadPath() {
         return headPath;
     }
 
@@ -47,8 +49,8 @@ public class User {
         return sex;
     }
 
-    public void setId(Integer id) {
-        this.userId = id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public void setName(String name) {
@@ -63,8 +65,8 @@ public class User {
         this.pwd = pwd;
     }
 
-    public void setPath(String path) {
-        this.headPath = path;
+    public void setHeadPath(String headPath) {
+        this.headPath = headPath;
     }
 
     public void setState(Integer state) {

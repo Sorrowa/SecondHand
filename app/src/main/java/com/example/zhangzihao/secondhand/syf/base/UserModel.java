@@ -25,4 +25,10 @@ public abstract class UserModel<T> {
         Message msg = gson.fromJson(jsonData,Message.class);
         return msg;
     }
+
+    protected User parseUser(String jsonData){
+        Gson gson = new Gson();
+        User user = gson.fromJson(jsonData,User.class);
+        return user;
+    }
 }

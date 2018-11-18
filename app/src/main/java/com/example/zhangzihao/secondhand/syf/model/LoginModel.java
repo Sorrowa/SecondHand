@@ -38,7 +38,6 @@ public class LoginModel extends UserModel {
     public void execute(UserCallback callback) {
         Log.d(TAG, "execute: "+email+"\t"+pwd);
         requestPostAPI(USER_LOGIN,callback);
-        callback.onComplete();
     }
 
     public void requestPostAPI(String url, final UserCallback callback) {
@@ -60,6 +59,7 @@ public class LoginModel extends UserModel {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.d(TAG, "onFailure: ");
+                callback.onComplete();
                 callback.onFailure(e.getMessage());
             }
 
@@ -69,6 +69,7 @@ public class LoginModel extends UserModel {
                 //Log.d(TAG, data);
                 Message msg = parseLogin(data);
                 Log.d(TAG, "parseLogin: "+msg.getCode()+"\t"+msg.getMsg());
+                callback.onComplete();
                 callback.onSuccess(msg);
             }
         });
