@@ -16,6 +16,7 @@ import com.example.zhangzihao.secondhand.MainActivity;
 import com.example.zhangzihao.secondhand.R;
 import com.example.zhangzihao.secondhand.syf.base.UserActivity;
 import com.example.zhangzihao.secondhand.syf.presenter.LoginPresenter;
+import com.example.zhangzihao.secondhand.syf.signUp.SignUpActivity;
 import com.example.zhangzihao.secondhand.syf.view.LoginView;
 
 public class LoginActivity extends UserActivity implements LoginView {
@@ -25,7 +26,6 @@ public class LoginActivity extends UserActivity implements LoginView {
     private EditText ev_email,ev_passwd;
     private Button login_btn;
     private TextView sign_up,find_pwd;
-    private Message message;
     LoginPresenter presenter;
 
     @Override
@@ -53,9 +53,15 @@ public class LoginActivity extends UserActivity implements LoginView {
                 if (email.equals("")||pwd.equals("")){
                     Toast.makeText(LoginActivity.this,"账号和密码不能为空！",Toast.LENGTH_SHORT).show();
                 }else{
-                    showLoading();
                     presenter.getData(email,pwd);
                 }
+            }
+        });
+
+        sign_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this,SignUpActivity.class));
             }
         });
 
@@ -75,5 +81,7 @@ public class LoginActivity extends UserActivity implements LoginView {
         }
         Looper.loop();
     }
+
+
 
 }

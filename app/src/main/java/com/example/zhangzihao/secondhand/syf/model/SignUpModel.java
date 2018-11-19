@@ -9,7 +9,6 @@ import com.example.zhangzihao.secondhand.syf.base.UserModel;
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
@@ -21,54 +20,47 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import static com.example.zhangzihao.secondhand.Base.URL.USER_LOGIN;
+import static com.example.zhangzihao.secondhand.Base.URL.USER_SIGN;
 
-public class LoginModel extends UserModel {
-    private static final String TAG = "LoginModel";
-    private String email,pwd;
+public class SignUpModel extends UserModel {
+    private static final String TAG = "SignUpModel";
+    private User user;
 
-    @Override
-    public UserModel params(String... params) {
-        email = params[0];
-        pwd = params[1];
-        return this;
+    public SignUpModel(User user){
+        this.user = user;
     }
 
     @Override
     public void execute(UserCallback callback) {
-        Log.d(TAG, "execute: "+email+"\t"+pwd);
-        requestPostAPI(USER_LOGIN,callback);
+        postUser(USER_SIGN,callback);
     }
 
-    private void requestPostAPI(String url, final UserCallback callback) {
+    private void postUser(String url, final UserCallback callback){
         OkHttpClient okHttpClient  = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10,TimeUnit.SECONDS)
                 .readTimeout(20, TimeUnit.SECONDS)
                 .build();
-        FormBody formBody = new FormBody.Builder()
-                .add("email",email)
-                .add("pwd",pwd)
-                .build();
+        Gson gson = new Gson();
+        String json = gson.toJson(user);
+        RequestBody requestBody = FormBody.create(MediaType.parse("application/json; charset=utf-8"), json);
         Request request = new Request.Builder()
-                .url(url)
-                .post(formBody)
+                .url(url)//请求的url
+                .post(requestBody)
                 .build();
         Call call = okHttpClient.newCall(request);
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.d(TAG, "onFailure: ");
                 callback.onComplete();
-                callback.onFailure(e.getMessage());
+                callback.onFailure("网络出了点小差！");
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String data = response.body().string();
-                //Log.d(TAG, data);
                 Message msg = parseLogin(data);
-                Log.d(TAG, "parseLogin: "+msg.getCode()+"\t"+msg.getMsg());
+                Log.d(TAG, "signUp: "+msg.getCode()+"\t"+msg.getMsg());
                 callback.onComplete();
                 callback.onSuccess(msg);
             }

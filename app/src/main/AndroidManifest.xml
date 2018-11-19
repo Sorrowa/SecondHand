@@ -26,7 +26,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".syf.login.LoginActivity" />
-        <activity android:name=".syf.modify.ModifyInfoActivity"></activity>
+        <activity android:name=".syf.modify.ModifyInfoActivity" />
+        <activity android:name=".syf.signUp.SignUpActivity"></activity>
     </application>
 
 </manifest>
