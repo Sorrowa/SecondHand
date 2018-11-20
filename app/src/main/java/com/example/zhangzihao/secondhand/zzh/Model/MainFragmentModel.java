@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.zhangzihao.secondhand.zzh.InternetInterfaceSet.MainGetBookInterface;
 import com.example.zhangzihao.secondhand.JavaBean.Book;
+import com.example.zhangzihao.secondhand.zzh.Presenter.BasePresenter;
 
 import java.util.ArrayList;
 
@@ -55,4 +56,13 @@ public class MainFragmentModel implements BaseModel {
         return null;
     }
 
+    @Override
+    public void bindPresenter(BasePresenter p) {
+
+    }
+
+    @Override
+    public void detachPresenter() {
+
+    }
 }

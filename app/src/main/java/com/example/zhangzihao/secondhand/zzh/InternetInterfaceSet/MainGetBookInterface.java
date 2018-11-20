@@ -12,4 +12,7 @@ public interface MainGetBookInterface {
 
     @GET("/book/selectAll")
     Call<ArrayList<Book>> getBookInfo();
+
+
+    Call<Book> getBook();
 }

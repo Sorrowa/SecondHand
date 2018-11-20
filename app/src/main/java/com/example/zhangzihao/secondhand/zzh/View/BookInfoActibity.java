@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.zhangzihao.secondhand.JavaBean.Book;
 import com.example.zhangzihao.secondhand.R;
 import com.example.zhangzihao.secondhand.zzh.Presenter.BasePresenter;
 import com.example.zhangzihao.secondhand.zzh.Presenter.BookInfoPresenter;
@@ -27,6 +28,9 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
     private Button agreeButton;
     private Button disagreeButton;
 
+    //显示的书籍
+    private Book book;
+
 
 
     @Override
@@ -35,7 +39,32 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
         setContentView(R.layout.activity_book_info_actibity);
         bookId= (int) savedInstanceState.get("book");
 
+        presenter=BookInfoPresenter.getInstance();
+        presenter.bindView(this);
+        //todo:调用presenter，获得book信息
+
         initeView();
+
+        initeBook();
+
+        addView();
+    }
+
+    /**
+     * 使用book填充view
+     */
+    private void addView() {
+        name.setText(book.getName());
+        type.setText(book.getType());
+        email.setText(book.getEmail());
+        introduction.setText(book.getIntroduction());
+    }
+
+    /**
+     * 初始化book
+     */
+    private void initeBook() {
+        presenter.getBook(book);
     }
 
     /**
@@ -57,4 +86,12 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
 
     @Override
     public void detachPresenter(BookInfoPresenter basePresenter) {}
+
+
+    @Override
+    protected void onDestroy() {
+        presenter.detachView(this);
+        presenter.detachAll();
+        super.onDestroy();
+    }
 }
