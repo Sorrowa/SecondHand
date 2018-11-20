@@ -3,6 +3,7 @@ package com.example.zhangzihao.secondhand.zzh.Presenter;
 
 import com.example.zhangzihao.secondhand.JavaBean.Book;
 import com.example.zhangzihao.secondhand.zzh.Model.MainFragmentModel;
+import com.example.zhangzihao.secondhand.zzh.View.BaseView;
 
 import java.util.ArrayList;
 
@@ -26,4 +27,12 @@ public class MainFragmentPresenter implements BasePresenter {
         return mainFragmentModel.seekForBookInfo();
     }
 
+
+
+
+    @Override
+    public void detachView(BaseView view) { }
+
+    @Override
+    public void bindView(BaseView view) { }
 }

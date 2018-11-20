@@ -25,9 +25,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".syf.login.LoginActivity" />
-        <activity android:name=".syf.modify.ModifyInfoActivity" />
-        <activity android:name=".syf.signUp.SignUpActivity"></activity>
+        <activity android:name=".syf.login.LoginActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".syf.modify.ModifyInfoActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".syf.signUp.SignUpActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".zzh.View.BookInfoActibity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

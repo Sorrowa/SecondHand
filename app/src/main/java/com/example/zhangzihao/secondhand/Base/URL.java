@@ -15,7 +15,7 @@ public class URL {
     public static String BOOK_PUBLISH = BOOK + "/publish";
     public static String BOOK_SELECT_BY_EMAIL = BOOK + "/selectByEmail";
     public static String BOOK_SELECT_BY_NAME = BOOK + "/selectByName";
-    public static String BOOK_SELECT_BY_TYPE = BOOK + "/selectByName";
+    public static String BOOK_SELECT_BY_TYPE = BOOK + "/selectByType";
 
     public static String COMMENT = ROOT + "/comment";
 

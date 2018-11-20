@@ -14,7 +14,7 @@ import com.example.zhangzihao.secondhand.R;
 import com.example.zhangzihao.secondhand.syf.login.LoginActivity;
 
 public class FlashActivity extends AppCompatActivity implements View.OnClickListener
-        ,BaseView{
+        {
 
 
 

@@ -1,64 +1,126 @@
 package com.example.zhangzihao.secondhand.JavaBean;
 
-import android.graphics.drawable.Drawable;
+import java.sql.Timestamp;
 
-/**
- * 书籍类别，作为之后所有书籍的参考
- */
-public class Book {
-    private int bookId;
-    private String bookName;
-    private String bookType;
-    private String bookWriter;
-    //存储图书
-    private String bookURL;
+public class Book  {
+    private Integer bookId;
+    private String email;//拥有者邮箱
+    private String name;//图书名字
+    private String type;//图书类型
+    private int state;//图书状态
+    private String introduction;//简介
+    private String date;//发布日期
+    private String imgPath;
+    private String imgPath2;
+    private String imgPath3;
+    private int good;//喜欢收藏数
+    private int bad;//不喜欢数
+    private Timestamp udDate;//修改时间
 
-    public Book(int bookId,String bookName,String bookType,String bookWriter,
-                String bookURL){
-        this.bookId=bookId;
-        this.bookName=bookName;
-        this.bookType=bookType;
-        this.bookWriter=bookWriter;
-        this.bookURL=bookURL;
-    }
+    private User user;
 
-    public String getBookWriter() {
-        return bookWriter;
-    }
-
-    public void setBookWriter(String bookWriter) {
-        this.bookWriter = bookWriter;
-    }
-
-    public String getBookType() {
-        return bookType;
-    }
-
-    public void setBookType(String bookType) {
-        this.bookType = bookType;
-    }
-
-    public String getBookName() {
-        return bookName;
-    }
-
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
-    }
-
-    public int getBookId() {
+    public Integer getBookId() {
         return bookId;
     }
 
-    public void setBookId(int bookId) {
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public String getDate() {
+        return date;
+    }
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public String getImgPath2() {
+        return imgPath2;
+    }
+
+    public String getImgPath3() {
+        return imgPath3;
+    }
+
+    public int getGood() {
+        return good;
+    }
+
+    public int getBad() {
+        return bad;
+    }
+
+    public Timestamp getUdDate() {
+        return udDate;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setBookId(Integer bookId) {
         this.bookId = bookId;
     }
 
-    public String getBookURL() {
-        return bookURL;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setBookURL(String bookURL) {
-        this.bookURL = bookURL;
+    public void setType(String type) {
+        this.type = type;
     }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
+    }
+
+    public void setImgPath3(String imgPath3) {
+        this.imgPath3 = imgPath3;
+    }
+
+    public void setGood(int good) {
+        this.good = good;
+    }
+
+    public void setBad(int bad) {
+        this.bad = bad;
+    }
+
+    public void setUdDate(Timestamp udDate) {
+        this.udDate = udDate;
+    }
+
+    public void setImgPath2(String imgPath2) {
+        this.imgPath2 = imgPath2;
+    }
+
 }
+

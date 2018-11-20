@@ -24,10 +24,9 @@ public class MainFragmentModel implements BaseModel {
      */
     public ArrayList<Book> getBookInfo(){
 
-        ArrayList<Book> books=new ArrayList<>();
+        final ArrayList<Book> books=new ArrayList<>();
 
-        books.add(new Book(123,"worio","sdf","asd"
-                ,"asdasd"));
+
 
         Retrofit retrofit=MRetrofitTool.getRetrofitInstance();
 
@@ -39,12 +38,13 @@ public class MainFragmentModel implements BaseModel {
         call.enqueue(new Callback<ArrayList<Book>>() {
             @Override
             public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response) {
-                Log.d("zzh","the callback is "+response.body());
+                books.addAll(response.body());
             }
 
             @Override
             public void onFailure(Call<ArrayList<Book>> call, Throwable t) {
-                Log.e("zzh","something wrong in Internet");
+                Log.e("zzh","something wrong in Internet "+t);
+
             }
         });
 
