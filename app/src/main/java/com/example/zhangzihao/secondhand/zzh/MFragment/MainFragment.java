@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -52,9 +53,11 @@ public class MainFragment extends Fragment {
         meditText = view.findViewById(R.id.search_text);
         button = view.findViewById(R.id.button_search);
 
+
         //界面初始化
         initOtherView();
         initRecycleView();
+
 
         return view;
     }
@@ -67,13 +70,46 @@ public class MainFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                books.addAll(tool.seekForBookInfo());
+                String content=getEdit();
+                tool.seekForBookInfo(content);
                 //可以在子线程中更新线程
-                mrecyclerView.invalidate();
-                view.postInvalidate();
+//                mrecyclerView.invalidate();
+//                view.postInvalidate();
+                //关闭软键盘
+                InputMethodManager imm = (InputMethodManager) context
+                        .getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(context
+                        .getWindow()
+                        .getDecorView()
+                        .getWindowToken(),
+                        0);
+                meditText.clearFocus();
             }
         });
         //todo:EditText
+//        meditText.
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        InputMethodManager imm = (InputMethodManager) context
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(context
+                        .getWindow()
+                        .getDecorView()
+                        .getWindowToken(),
+                0);
+        //meditText.clearFocus();
+    }
+
+    /**
+     * 获取EditText的输入内容，(并对其进行类型判断)
+     * @return 处理完成的结果
+     */
+    private String getEdit(){
+        String content=meditText.getText().toString();
+        return content;
     }
 
     /**
@@ -88,12 +124,12 @@ public class MainFragment extends Fragment {
         //Log.d("zzh","book ="+books.get(1));
         reAdapter = new MyAdapterForMainRecycleView(context, books);
         mrecyclerView.setAdapter(reAdapter);
+        reAdapter.notifyDataSetChanged();
     }
 
 
     /**
      * 设置所有的参数
-     *
      * @param tool 数据获取接口
      */
     public static void setInfo(MainFragmentInterface tool, Context context) {
@@ -103,14 +139,27 @@ public class MainFragment extends Fragment {
         MainFragment.context = (MainActivity) context;
     }
 
+    /**
+     * 更新book显示
+     * @param books
+     */
+    public void setBookList(ArrayList<Book> books){
+        if (null==books){
+            this.books.clear();
+        }else {
+            this.books.clear();
+            this.books.addAll(books);
+        }
+        reAdapter.notifyDataSetChanged();
+        view.postInvalidate();
+    }
 
     public interface MainFragmentInterface {
         /**
          * 搜索图书网络信息
-         *
          * @return 返回获取（已经被处理好）的书籍信息
          */
-        ArrayList<Book> seekForBookInfo();
+        ArrayList<Book> seekForBookInfo(String content);
 
     }
 }
