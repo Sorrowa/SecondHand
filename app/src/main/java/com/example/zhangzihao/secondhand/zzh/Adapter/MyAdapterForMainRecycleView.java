@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +51,7 @@ public class MyAdapterForMainRecycleView extends RecyclerView.Adapter<MyAdapterF
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context, BookInfoActibity.class);
-                intent.putExtra("book",books.get(position).getBookId());
+                intent.putExtra("book", books.get(position).getBookId());
                 context.startActivity(intent);
             }
         });
