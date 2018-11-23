@@ -17,6 +17,9 @@ public interface MainGetBookInterface {
     @GET("/book/selectWithComments")
     Call<Book> getBook(@Query("bookId") int bookId);
 
-    @GET("/book/selectByType")
+    @GET("/book/selectByName")
     Call<ArrayList<Book>> getBookByName(@Query("name")String name);
+
+    @GET("/book/selectByType")
+    Call<ArrayList<Book>> getBookByType(@Query("type")String type);
 }

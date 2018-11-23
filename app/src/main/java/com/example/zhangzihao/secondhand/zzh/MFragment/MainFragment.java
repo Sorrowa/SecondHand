@@ -19,6 +19,9 @@ import com.example.zhangzihao.secondhand.zzh.Adapter.MyAdapterForMainRecycleView
 import com.example.zhangzihao.secondhand.JavaBean.Book;
 import com.example.zhangzihao.secondhand.R;
 import com.example.zhangzihao.secondhand.MainActivity;
+import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
+import com.nightonke.boommenu.BoomButtons.SimpleCircleButton;
+import com.nightonke.boommenu.BoomMenuButton;
 
 import java.util.ArrayList;
 
@@ -36,9 +39,13 @@ public class MainFragment extends Fragment {
     private EditText meditText;
     private Button button;
     private View view;
+    private BoomMenuButton typeButton;
     private MyAdapterForMainRecycleView reAdapter;
 
     private ArrayList<Book> books = new ArrayList<>();
+
+    private ArrayList<String> bookTypes=new ArrayList<>();
+    private ArrayList<Integer> bookImage=new ArrayList<>();
 
 
     @Nullable
@@ -58,8 +65,58 @@ public class MainFragment extends Fragment {
         initOtherView();
         initRecycleView();
 
+        initTypeButton();
+
 
         return view;
+    }
+
+    /**
+     * 初始化类型选择按钮
+     */
+    private void initTypeButton() {
+        initBookType();
+
+        typeButton=view.findViewById(R.id.typeButton);
+
+        for (int i=0;i<typeButton.getPiecePlaceEnum().pieceNumber();i++){
+            final int a=i;
+            SimpleCircleButton.Builder builder=new SimpleCircleButton.Builder()
+                    .listener(new OnBMClickListener() {
+                        @Override
+                        public void onBoomButtonClick(int index) {
+                            //todo:获取当前类型的图书信息
+                            context.seekForBookType(bookTypes.get(a));
+                        }
+                    })
+                    .normalImageRes(bookImage.get(a));
+            typeButton.addBuilder(builder);
+        }
+
+    }
+
+    /**
+     * 初始化book类型list
+     */
+    private void initBookType() {
+        bookTypes.add("小说");
+        bookImage.add(R.mipmap.xiaoshuo);
+        bookTypes.add("心理");
+        bookImage.add(R.mipmap.heart);
+        bookTypes.add("艺术");
+        bookImage.add(R.mipmap.art);
+        bookTypes.add("地理");
+        bookImage.add(R.mipmap.location);
+        bookTypes.add("体育");
+        bookImage.add(R.mipmap.tiyu);
+        bookTypes.add("管理");
+        bookImage.add(R.mipmap.manage);
+        bookTypes.add("经济");
+        bookImage.add(R.mipmap.money);
+        bookTypes.add("历史");
+        bookImage.add(R.mipmap.history);
+        bookTypes.add("计算机");
+        bookImage.add(R.mipmap.computer);
     }
 
     /**
@@ -160,6 +217,8 @@ public class MainFragment extends Fragment {
          * @return 返回获取（已经被处理好）的书籍信息
          */
         ArrayList<Book> seekForBookInfo(String content);
+
+        void seekForBookType(String content);
 
     }
 }

@@ -134,8 +134,22 @@ public class MainActivity extends BaseActivity implements MainFragment.MainFragm
         return mainFragmentPresenter.seekForBookInfo(content);
     }
 
+    /**
+     * 获取BookList的信息
+     * @param content 类型
+     */
+    @Override
+    public void seekForBookType(String content) {
+
+        mainFragmentPresenter.seekForBookType(content);
+        return ;
+    }
 
 
+    /**
+     * 给mainFragment设置Book
+     * @param books
+     */
     public void setBookList(final ArrayList<Book> books){
         //todo:
         Handler handler=new Handler();

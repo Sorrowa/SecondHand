@@ -32,6 +32,10 @@ public class MainFragmentPresenter implements BasePresenter {
         return mainFragmentModel.seekForBookInfo(content);
     }
 
+    public void seekForBookType(String content){
+        mainFragmentModel.seekForBookType(content);
+    }
+
     public void setBookList(ArrayList<Book> books){
         //todo:添加book内容
         //Log.d("zzh","books="+books);

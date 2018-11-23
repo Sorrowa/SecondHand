@@ -80,6 +80,27 @@ public class MainFragmentModel implements BaseModel<MainFragmentPresenter> {
         return null;
     }
 
+    /**
+     * 根据类型获取bookType
+     * @param content book类型
+     */
+    public void seekForBookType(String content){
+        Retrofit retrofit=MRetrofitTool.getRetrofitInstance();
+        MainGetBookInterface mainGetBookInterface=retrofit
+                .create(MainGetBookInterface.class);
+        Call<ArrayList<Book>> call=mainGetBookInterface.getBookByType(content);
+        call.enqueue(new Callback<ArrayList<Book>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Book>> call, Response<ArrayList<Book>> response) {
+                presenter.setBookList(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Book>> call, Throwable t) {}
+        });
+
+    }
+
 
     @Override
     public void bindPresenter(MainFragmentPresenter p) {
