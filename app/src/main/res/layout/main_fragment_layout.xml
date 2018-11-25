@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
@@ -17,28 +18,31 @@
     </android.support.v7.widget.Toolbar>
 
     <LinearLayout
+        android:focusable="true"
         android:layout_below="@id/mainToolbar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:orientation="horizontal"
         android:id="@+id/mainLinear">
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@mipmap/ic_launcher"/>
+        <!--<ImageView-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:src="@mipmap/ic_launcher"/>-->
 
         <EditText
             android:id="@+id/search_text"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="50dp"/>
+            android:layout_height="match_parent"
+            android:imeOptions="actionSearch"
+            android:hint="请输入关键字"/>
 
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@mipmap/ic_launcher"
-            android:id="@+id/button_search"/>
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@mipmap/search"
+            android:id="@+id/button_search" />
 
     </LinearLayout>
 
@@ -49,5 +53,16 @@
         android:id="@+id/booklist">
 
     </android.support.v7.widget.RecyclerView>
+
+    <com.nightonke.boommenu.BoomMenuButton
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/typeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:bmb_buttonEnum="simpleCircle"
+        app:bmb_piecePlaceEnum="piecePlace_dot_9_1"
+        app:bmb_buttonPlaceEnum="buttonPlace_sc_9_1"
+        />
 
 </RelativeLayout>

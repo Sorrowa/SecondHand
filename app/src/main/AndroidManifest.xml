@@ -37,7 +37,6 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
         <activity android:name=".zzh.View.BookInfoActibity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait">
         </activity>
     </application>

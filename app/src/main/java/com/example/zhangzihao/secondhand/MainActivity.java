@@ -1,5 +1,6 @@
 package com.example.zhangzihao.secondhand;
 
+import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -33,6 +34,8 @@ public class MainActivity extends BaseActivity implements MainFragment.MainFragm
     //第一个fragment的界面
     private MainFragmentPresenter mainFragmentPresenter;
 
+    MainFragment mainFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +61,8 @@ public class MainActivity extends BaseActivity implements MainFragment.MainFragm
         //todo:绑定具体的fragment到fragments中
         //主界面fragment
         MainFragment.setInfo(this,this);
-        mainFragmentPresenter=new MainFragmentPresenter();
-        MainFragment mainFragment=new MainFragment();
+        mainFragmentPresenter=new MainFragmentPresenter(this);
+        mainFragment=new MainFragment();
         fragments.add(mainFragment);
         //todo:之后的碎片添加都做在这！！邓衍翔你看到了吗！！
 
@@ -89,14 +92,10 @@ public class MainActivity extends BaseActivity implements MainFragment.MainFragm
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
+            public void onTabUnselected(TabLayout.Tab tab) {}
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
+            public void onTabReselected(TabLayout.Tab tab) {}
         });
 
 
@@ -130,12 +129,37 @@ public class MainActivity extends BaseActivity implements MainFragment.MainFragm
      * @return 获取的图书列表
      */
     @Override
-    public ArrayList<Book> seekForBookInfo() {
+    public ArrayList<Book> seekForBookInfo(String content) {
         //todo:presenter接口调用 !!注意参数还没加呢!!
-        return mainFragmentPresenter.seekForBookInfo();
+        return mainFragmentPresenter.seekForBookInfo(content);
+    }
+
+    /**
+     * 获取BookList的信息
+     * @param content 类型
+     */
+    @Override
+    public void seekForBookType(String content) {
+
+        mainFragmentPresenter.seekForBookType(content);
+        return ;
     }
 
 
+    /**
+     * 给mainFragment设置Book
+     * @param books
+     */
+    public void setBookList(final ArrayList<Book> books){
+        //todo:
+        Handler handler=new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                mainFragment.setBookList(books);
+            }
+        });
+    }
 
     //忽视下面这方法
     @Override

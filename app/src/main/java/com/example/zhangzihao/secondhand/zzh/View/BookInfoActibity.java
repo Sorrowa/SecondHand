@@ -1,7 +1,9 @@
 package com.example.zhangzihao.secondhand.zzh.View;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,13 +33,15 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
     //显示的书籍
     private Book book;
 
+    Handler handler=new Handler();
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_info_actibity);
-        bookId= (int) savedInstanceState.get("book");
+        bookId= getIntent().getIntExtra("book",-1);
 
         presenter=BookInfoPresenter.getInstance();
         presenter.bindView(this);
@@ -47,13 +51,13 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
 
         initeBook();
 
-        addView();
+        //addView();
     }
 
     /**
      * 使用book填充view
      */
-    private void addView() {
+    private void addView(Book book) {
         name.setText(book.getName());
         type.setText(book.getType());
         email.setText(book.getEmail());
@@ -64,7 +68,7 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
      * 初始化book
      */
     private void initeBook() {
-        presenter.getBook(book);
+        presenter.getBook(bookId);
     }
 
     /**
@@ -87,6 +91,27 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
     @Override
     public void detachPresenter(BookInfoPresenter basePresenter) {}
 
+    /**
+     * 异步填充view
+     * @param book
+     */
+    public void setBookView(final Book book){
+        Log.d("zzh","bookId is "+book);
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                //Log.d("zzh","book is "+book);
+                book.setBookId(bookId);
+                addView(book);
+            }
+        });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+//        onDestroy();
+    }
 
     @Override
     protected void onDestroy() {

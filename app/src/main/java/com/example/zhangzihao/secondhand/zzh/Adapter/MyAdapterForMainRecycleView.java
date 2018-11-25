@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +51,7 @@ public class MyAdapterForMainRecycleView extends RecyclerView.Adapter<MyAdapterF
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context, BookInfoActibity.class);
-                intent.putExtra("book",books.get(position).getBookId());
+                intent.putExtra("book", books.get(position).getBookId());
                 context.startActivity(intent);
             }
         });
@@ -68,7 +69,7 @@ public class MyAdapterForMainRecycleView extends RecyclerView.Adapter<MyAdapterF
         ImageView mimageView;
         TextView bookName;
         TextView bookType;
-        TextView bookWords;
+        //TextView bookWords;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -76,13 +77,13 @@ public class MyAdapterForMainRecycleView extends RecyclerView.Adapter<MyAdapterF
             mimageView=itemView.findViewById(R.id.book_image_main);
             bookName=itemView.findViewById(R.id.book_name_main);
             bookType=itemView.findViewById(R.id.book_type_main);
-            bookWords=itemView.findViewById(R.id.book_words_main);
+            //bookWords=itemView.findViewById(R.id.book_words_main);
         }
 
         public void setInfo(Book book){
             //todo:设置图片
             bookName.setText(book.getName());
-            bookWords.setText(book.getIntroduction());
+            //bookWords.setText(book.getIntroduction());
             bookType.setText(book.getType());
         }
     }

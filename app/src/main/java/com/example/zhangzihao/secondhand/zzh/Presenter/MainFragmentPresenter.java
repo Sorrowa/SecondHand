@@ -1,7 +1,10 @@
 package com.example.zhangzihao.secondhand.zzh.Presenter;
 
 
+import android.util.Log;
+
 import com.example.zhangzihao.secondhand.JavaBean.Book;
+import com.example.zhangzihao.secondhand.MainActivity;
 import com.example.zhangzihao.secondhand.zzh.Model.MainFragmentModel;
 import com.example.zhangzihao.secondhand.zzh.View.BaseView;
 
@@ -13,18 +16,30 @@ import java.util.ArrayList;
 public class MainFragmentPresenter implements BasePresenter {
 
     private MainFragmentModel mainFragmentModel;
+    private static MainActivity mainActivity;
 
-    public MainFragmentPresenter(){
+    public MainFragmentPresenter(MainActivity mainActivity){
         mainFragmentModel=new MainFragmentModel();
+        mainFragmentModel.bindPresenter(this);
+        MainFragmentPresenter.mainActivity=mainActivity;
     }
 
     public ArrayList<Book> getBookInfo(){
-
         return mainFragmentModel.getBookInfo();
     }
 
-    public ArrayList<Book> seekForBookInfo() {
-        return mainFragmentModel.seekForBookInfo();
+    public ArrayList<Book> seekForBookInfo(String content) {
+        return mainFragmentModel.seekForBookInfo(content);
+    }
+
+    public void seekForBookType(String content){
+        mainFragmentModel.seekForBookType(content);
+    }
+
+    public void setBookList(ArrayList<Book> books){
+        //todo:添加book内容
+        //Log.d("zzh","books="+books);
+        mainActivity.setBookList(books);
     }
 
 
