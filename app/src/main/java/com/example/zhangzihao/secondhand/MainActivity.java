@@ -11,6 +11,7 @@ import com.example.zhangzihao.secondhand.syf.fragment.InfoFragment;
 import com.example.zhangzihao.secondhand.zzh.Adapter.MainViewPagerAdapter;
 import com.example.zhangzihao.secondhand.zzh.MFragment.MainFragment;
 import com.example.zhangzihao.secondhand.JavaBean.Book;
+import com.example.zhangzihao.secondhand.zzh.Presenter.BasePresenter;
 import com.example.zhangzihao.secondhand.zzh.Presenter.MainFragmentPresenter;
 import com.example.zhangzihao.secondhand.zzh.View.BaseView;
 
@@ -133,4 +134,13 @@ public class MainActivity extends BaseActivity implements MainFragment.MainFragm
         //todo:presenter接口调用 !!注意参数还没加呢!!
         return mainFragmentPresenter.seekForBookInfo();
     }
+
+
+
+    //忽视下面这方法
+    @Override
+    public void bindPresenter(BasePresenter basePresenter) { }
+
+    @Override
+    public void detachPresenter(BasePresenter basePresenter) { }
 }

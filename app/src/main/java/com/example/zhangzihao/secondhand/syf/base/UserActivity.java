@@ -7,7 +7,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-public abstract class UserActivity extends AppCompatActivity implements UserView {
+import com.example.zhangzihao.secondhand.Base.BaseActivity;
+
+public abstract class UserActivity extends BaseActivity implements UserView {
     private ProgressDialog mProgressDialog;
 
     @Override

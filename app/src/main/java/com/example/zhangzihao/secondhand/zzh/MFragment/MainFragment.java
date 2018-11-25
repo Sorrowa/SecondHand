@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,8 +83,9 @@ public class MainFragment extends Fragment {
 
         mrecyclerView.setLayoutManager(new LinearLayoutManager(context));
         //获取book展示列表
-        books = context.getBookInfo();
 
+        books = context.getBookInfo();
+        //Log.d("zzh","book ="+books.get(1));
         reAdapter = new MyAdapterForMainRecycleView(context, books);
         mrecyclerView.setAdapter(reAdapter);
     }

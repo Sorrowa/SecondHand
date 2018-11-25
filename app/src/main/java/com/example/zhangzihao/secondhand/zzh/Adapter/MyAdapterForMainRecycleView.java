@@ -1,6 +1,8 @@
 package com.example.zhangzihao.secondhand.zzh.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.zhangzihao.secondhand.JavaBean.Book;
 import com.example.zhangzihao.secondhand.R;
+import com.example.zhangzihao.secondhand.zzh.View.BookInfoActibity;
 
 import java.util.ArrayList;
 
@@ -39,8 +42,19 @@ public class MyAdapterForMainRecycleView extends RecyclerView.Adapter<MyAdapterF
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         holder.setInfo(books.get(position));
+
+        //todo:跳转到图书信息界面
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, BookInfoActibity.class);
+                intent.putExtra("book",books.get(position).getBookId());
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -67,9 +81,9 @@ public class MyAdapterForMainRecycleView extends RecyclerView.Adapter<MyAdapterF
 
         public void setInfo(Book book){
             //todo:设置图片
-            bookName.setText(book.getBookName());
-            bookWords.setText(book.getBookWriter());
-            bookType.setText(book.getBookType());
+            bookName.setText(book.getName());
+            bookWords.setText(book.getIntroduction());
+            bookType.setText(book.getType());
         }
     }
 }

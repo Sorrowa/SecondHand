@@ -4,22 +4,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="@color/white">
     <android.support.design.widget.AppBarLayout
         android:id="@+id/info_appBar"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="280dp"
         android:layout_marginTop="0dp"
         android:fitsSystemWindows="true">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:theme="@style/ThemeOverlay.AppCompat.Light"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+        <!--<android.support.design.widget.CollapsingToolbarLayout-->
+            <!--android:id="@+id/collapsing_toolbar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:theme="@style/ThemeOverlay.AppCompat.Light"-->
+            <!--android:fitsSystemWindows="true"-->
+            <!--app:contentScrim="?attr/colorPrimary"-->
+            <!--app:layout_scrollFlags="scroll|exitUntilCollapsed">-->
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -64,28 +65,12 @@
                         </FrameLayout>
 
                     </android.support.v7.widget.Toolbar>
-                    <!--<LinearLayout-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:orientation="horizontal">-->
-                        <!--<TextView-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="50dp"-->
-                            <!--android:id="@+id/info_tile"-->
-                            <!--android:text="个人信息"-->
-                            <!--android:textSize="20sp"-->
-                            <!--android:gravity="center"-->
-                            <!--android:layout_marginTop="20dp"-->
-                            <!--android:textColor="@color/white"/>-->
-                        <!--<ImageView-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:src="@drawable/ic_action_setting"/>-->
-                    <!--</LinearLayout>-->
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="25dp"
                         android:id="@+id/info_name"
                         android:text="用户名"
                         android:textSize="35sp"
@@ -94,30 +79,131 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:id="@+id/info_email"
                         android:text="账号397655952@qq.com"
                         android:textSize="18sp"
                         android:textColor="@color/white"/>
-                    <Button
-                        android:id="@+id/goto_login"
-                        android:layout_width="150dp"
-                        android:layout_height="60dp"
-                        android:layout_gravity="center"
-                        android:text="点我登录哦"
-                        android:textSize="22sp" />
+
                 </LinearLayout>
+                <Button
+                    android:id="@+id/goto_login"
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:text="点我登录哦"
+                    android:textSize="22sp" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/info_head"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="20dp"
+                    android:src="@mipmap/default_head"
+                    android:layout_gravity="bottom|end"
+                    />
             </FrameLayout>
-        </android.support.design.widget.CollapsingToolbarLayout>
+        <!--</android.support.design.widget.CollapsingToolbarLayout>-->
+
     </android.support.design.widget.AppBarLayout>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/info_head"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="20dp"
-        android:src="@mipmap/default_head"
-        app:layout_anchor="@id/info_appBar"
-        app:layout_anchorGravity="bottom|end"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="280dp"
+        app:layout_anchorGravity="bottom"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:id="@+id/my_books"
+            android:background="@color/white">
+            <ImageView
+                android:layout_marginLeft="5dp"
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_info_book"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:text="我的图书"
+                android:textSize="22sp"/>
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_right_arrows"
+                android:layout_marginRight="10dp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/lightgrey"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:id="@+id/my_comments"
+            android:background="@color/white">
+            <ImageView
+                android:layout_marginLeft="5dp"
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_info_comment"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:text="我的留言"
+                android:textSize="22sp"/>
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_right_arrows"
+                android:layout_marginRight="10dp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/lightgrey"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:id="@+id/my_charges"
+            android:background="@color/white">
+            <ImageView
+                android:layout_marginLeft="5dp"
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_info_charge"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:text="我的交易"
+                android:textSize="22sp"/>
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_right_arrows"
+                android:layout_marginRight="10dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>

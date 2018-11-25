@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
 import com.example.zhangzihao.secondhand.Base.BaseActivity;
 import com.example.zhangzihao.secondhand.JavaBean.User;
 import com.example.zhangzihao.secondhand.R;
@@ -58,16 +59,16 @@ public class InfoFragment extends UserFragment implements InfoView {
         View view = inflater.inflate(R.layout.info_fragment_layout,container,false);
         this.view = view;
         initView();
+//        initUI();
         return view;
     }
 
     @Override
     public void onResume() {
+        initUI();
         String email = ((BaseActivity) getActivity()).getCurrentUser();
         if (email != null){
             presenter.getData(email);
-        }else{
-            initUI();
         }
         super.onResume();
     }
@@ -118,6 +119,7 @@ public class InfoFragment extends UserFragment implements InfoView {
         RequestOptions options = new RequestOptions()
                 .placeholder(R.mipmap.waiting)
                 .error(R.mipmap.default_head)
+                .signature(new ObjectKey(System.currentTimeMillis()))
                 .diskCacheStrategy(DiskCacheStrategy.NONE);
         head.setVisibility(View.VISIBLE);
         settings.setVisibility(View.VISIBLE);
