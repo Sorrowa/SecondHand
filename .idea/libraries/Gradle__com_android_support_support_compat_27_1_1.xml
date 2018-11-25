@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.android.support:support-compat-27.1.1">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/dd8bcddb5a16c7f659665218b2295e6f/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/dd8bcddb5a16c7f659665218b2295e6f/jars/classes.jar!/" />
+      <root url="jar://D:/AndroidStudioSDK/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/ac671afd51a32e49d2d543ccb040e738/jars/classes.jar!/" />
+      <root url="file://D:/AndroidStudioSDK/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/ac671afd51a32e49d2d543ccb040e738/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.support/support-compat/27.1.1/fe233277b6eae25ce5b2afab6daf55d73c86f0b9/support-compat-27.1.1-sources.jar!/" />
+      <root url="jar://D:/AndroidStudioSDK/.gradle/caches/modules-2/files-2.1/com.android.support/support-compat/27.1.1/fe233277b6eae25ce5b2afab6daf55d73c86f0b9/support-compat-27.1.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

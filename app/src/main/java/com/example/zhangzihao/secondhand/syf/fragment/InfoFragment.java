@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -44,6 +45,7 @@ public class InfoFragment extends UserFragment implements InfoView {
     Toolbar toolbar;
     ImageView settings;
     Button goto_login;
+    LinearLayout my_books,my_charges,my_comments;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -89,6 +91,37 @@ public class InfoFragment extends UserFragment implements InfoView {
         tv_tile = view.findViewById(R.id.info_tile);
         tv_name = view.findViewById(R.id.info_name);
         tv_email = view.findViewById(R.id.info_email);
+        my_books = view.findViewById(R.id.my_books);
+        my_charges = view.findViewById(R.id.my_charges);
+        my_comments = view.findViewById(R.id.my_comments);
+
+        my_books.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /**
+                 * zzh查看自己图书的跳转逻辑写到这里哦！
+                 */
+            }
+        });
+
+        my_charges.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /**
+                 * dyx查看交易记录的跳转逻辑写到这里哦！
+                 */
+            }
+        });
+
+        my_comments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /**
+                 * dyx查看自己评论的跳转逻辑写到这里哦
+                 */
+            }
+        });
+
     }
 
     public void initUI(){
