@@ -69,7 +69,7 @@ public class MyAdapterForMainRecycleView extends RecyclerView.Adapter<MyAdapterF
         ImageView mimageView;
         TextView bookName;
         TextView bookType;
-        TextView bookWords;
+        //TextView bookWords;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -77,13 +77,13 @@ public class MyAdapterForMainRecycleView extends RecyclerView.Adapter<MyAdapterF
             mimageView=itemView.findViewById(R.id.book_image_main);
             bookName=itemView.findViewById(R.id.book_name_main);
             bookType=itemView.findViewById(R.id.book_type_main);
-            bookWords=itemView.findViewById(R.id.book_words_main);
+            //bookWords=itemView.findViewById(R.id.book_words_main);
         }
 
         public void setInfo(Book book){
             //todo:设置图片
             bookName.setText(book.getName());
-            bookWords.setText(book.getIntroduction());
+            //bookWords.setText(book.getIntroduction());
             bookType.setText(book.getType());
         }
     }

@@ -36,14 +36,13 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:imeOptions="actionSearch"
-            android:hint="请输入您的搜索内容"
-            android:drawableLeft="@mipmap/ic_launcher_round"/>
+            android:hint="请输入关键字"/>
 
         <Button
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:src="@mipmap/ic_launcher"
-            android:id="@+id/button_search"/>
+            android:background="@mipmap/search"
+            android:id="@+id/button_search" />
 
     </LinearLayout>
 

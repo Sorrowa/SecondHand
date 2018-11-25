@@ -1,14 +1,17 @@
 package com.example.zhangzihao.secondhand.zzh.MFragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -122,25 +125,34 @@ public class MainFragment extends Fragment {
     /**
      * 初始化EditView，button等
      */
+    @SuppressLint("ClickableViewAccessibility")
     private void initOtherView() {
         //todo:button
-        button.setOnClickListener(new View.OnClickListener() {
+
+
+        button.setOnTouchListener(new View.OnTouchListener() {
+
             @Override
-            public void onClick(View v) {
-                String content=getEdit();
-                tool.seekForBookInfo(content);
-                //可以在子线程中更新线程
-//                mrecyclerView.invalidate();
-//                view.postInvalidate();
-                //关闭软键盘
-                InputMethodManager imm = (InputMethodManager) context
-                        .getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(context
-                        .getWindow()
-                        .getDecorView()
-                        .getWindowToken(),
-                        0);
-                meditText.clearFocus();
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        String content=getEdit();
+                        tool.seekForBookInfo(content);
+                        InputMethodManager imm = (InputMethodManager) context
+                                .getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(context
+                                        .getWindow()
+                                        .getDecorView()
+                                        .getWindowToken(),
+                                0);
+                        meditText.clearFocus();
+                        //todo:设置button图片
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        //todo:重新设置button图片
+                        break;
+                }
+                return true;
             }
         });
         //todo:EditText
@@ -174,9 +186,9 @@ public class MainFragment extends Fragment {
      */
     private void initRecycleView() {
 
-        mrecyclerView.setLayoutManager(new LinearLayoutManager(context));
+//        mrecyclerView.setLayoutManager(new LinearLayoutManager(context));
         //获取book展示列表
-
+        mrecyclerView.setLayoutManager(new GridLayoutManager(context,2));
         books = context.getBookInfo();
         //Log.d("zzh","book ="+books.get(1));
         reAdapter = new MyAdapterForMainRecycleView(context, books);
