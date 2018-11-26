@@ -2,6 +2,10 @@
 *.apk
 *.ap_
 
+
+.gradle/4.6/fileHashes/fileHashes.bin.cpgz
+*.bin
+
 # Files for the ART/Dalvik VM
 *.dex
 
