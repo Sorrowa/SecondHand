@@ -3,6 +3,7 @@ package com.example.zhangzihao.secondhand.syf.base;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
@@ -36,12 +37,14 @@ public abstract class UserActivity extends BaseActivity implements UserView {
 
     @Override
     public void showToast(String msg) {
+        Looper.prepare();
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+        Looper.loop();
     }
 
     @Override
     public void showErr() {
-        showToast("出现错误！");
+        showToast("网络出现错误！");
     }
 
     @Override

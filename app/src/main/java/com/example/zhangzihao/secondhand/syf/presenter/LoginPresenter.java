@@ -27,7 +27,7 @@ public class LoginPresenter extends UserPresenter<LoginView> {
                     @Override
                     public void onFailure(String msg) {
                         if (isViewAttached()){
-                            getMvpView().showToast(msg);
+                            getMvpView().showErr();
                         }
                     }
 

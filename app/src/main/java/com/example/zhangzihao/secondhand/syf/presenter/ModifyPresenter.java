@@ -29,7 +29,7 @@ public class ModifyPresenter extends UserPresenter<ModifyView>{
             @Override
             public void onFailure(String msg) {
                 if (isViewAttached()){
-                    getMvpView().showToast(msg);
+                    getMvpView().showErr();
                 }
             }
 
@@ -67,7 +67,7 @@ public class ModifyPresenter extends UserPresenter<ModifyView>{
             @Override
             public void onFailure(String msg) {
                 if (isViewAttached()){
-                    getMvpView().showToast(msg);
+                    getMvpView().showErr();
                 }
             }
 

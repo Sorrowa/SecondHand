@@ -28,7 +28,7 @@ public class InfoPresenter extends UserPresenter<InfoView> {
                     @Override
                     public void onFailure(String msg) {
                         if (isViewAttached()){
-                            getMvpView().showToast(msg);
+                            getMvpView().showErr();
                         }
                     }
 
