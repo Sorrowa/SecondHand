@@ -120,8 +120,8 @@ public class ModifyInfoActivity extends UserActivity implements ModifyView ,View
 
     @Override
     public void showResult(com.example.zhangzihao.secondhand.JavaBean.Message msg) {
-        showToast(msg.getMsg());
         Looper.prepare();
+        showToast(msg.getMsg());
         presenter.getUser(getCurrentUser());
         Looper.loop();
     }

@@ -37,14 +37,14 @@ public abstract class UserActivity extends BaseActivity implements UserView {
 
     @Override
     public void showToast(String msg) {
-        Looper.prepare();
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
-        Looper.loop();
     }
 
     @Override
     public void showErr() {
+        Looper.prepare();
         showToast("网络出现错误！");
+        Looper.loop();
     }
 
     @Override
