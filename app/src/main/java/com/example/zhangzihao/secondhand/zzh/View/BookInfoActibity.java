@@ -79,10 +79,10 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
      * 使用book填充view
      */
     private void addView(Book book) {
-        name.setText(book.getName());
-        type.setText(book.getType());
-        email.setText(book.getEmail());
-        introduction.setText(book.getIntroduction());
+        name.setText("图书名称: "+book.getName());
+        type.setText("图书类型: "+book.getType());
+        email.setText("联系人邮箱: "+book.getEmail());
+        introduction.setText("图书基本介绍: "+book.getIntroduction());
     }
 
     /**
