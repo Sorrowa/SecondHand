@@ -1,9 +1,12 @@
 package com.example.zhangzihao.secondhand.zzh.View;
 
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,6 +33,8 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
     private Button agreeButton;
     private Button disagreeButton;
 
+    private Toolbar toolbar;
+
     //显示的书籍
     private Book book;
 
@@ -40,7 +45,7 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_info_actibity);
+        setContentView(R.layout.book_info_two_version);
         bookId= getIntent().getIntExtra("book",-1);
 
         presenter=BookInfoPresenter.getInstance();
@@ -49,9 +54,25 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
 
         initeView();
 
+        initeActionBar();
+
         initeBook();
 
         //addView();
+    }
+
+    /**
+     * 初始化标题栏
+     */
+    private void initeActionBar() {
+        setSupportActionBar(toolbar);
+        ActionBar actionBar=getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(false);
+        actionBar.setDisplayUseLogoEnabled(false);
+
+        //显示返回键
     }
 
     /**
@@ -61,7 +82,17 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
         name.setText(book.getName());
         type.setText(book.getType());
         email.setText(book.getEmail());
-        introduction.setText(book.getIntroduction());
+        introduction.setText(book.getIntroduction()+book.getIntroduction()+book.getIntroduction()
+                +book.getIntroduction()
+                +book.getIntroduction()
+                +book.getIntroduction()
+                +book.getIntroduction()
+                +book.getIntroduction()
+                +book.getIntroduction()
+                +book.getIntroduction()
+                +book.getIntroduction()
+                +book.getIntroduction()
+                +book.getIntroduction());
     }
 
     /**
@@ -79,9 +110,10 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
         type=findViewById(R.id.book_info_type);
         email=findViewById(R.id.book_info_email);
         introduction=findViewById(R.id.book_info_introduction);
+        toolbar=findViewById(R.id.info_toolbar);
 
-        agreeButton=findViewById(R.id.agree_button);
-        disagreeButton=findViewById(R.id.disagree_button);
+//        agreeButton=findViewById(R.id.agree_button);
+//        disagreeButton=findViewById(R.id.disagree_button);
     }
 
 
@@ -118,5 +150,16 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
         presenter.detachView(this);
         presenter.detachAll();
         super.onDestroy();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Log.d("zzh","点击成功了吗");
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
