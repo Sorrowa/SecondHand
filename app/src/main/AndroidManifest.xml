@@ -3,7 +3,7 @@
     package="com.example.zhangzihao.secondhand">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -26,20 +26,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".syf.login.LoginActivity"
+        <activity
+            android:name=".syf.login.LoginActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".syf.modify.ModifyInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".syf.modify.ModifyInfoActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/WindowsTransparent"/>
-        <activity android:name=".syf.signUp.SignUpActivity"
+            android:theme="@style/WindowsTransparent" />
+        <activity
+            android:name=".syf.signUp.SignUpActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".zzh.View.BookInfoActibity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".zzh.View.BookInfoActibity"
             android:screenOrientation="portrait"
-            android:theme="@style/TransparentTheme">
-        </activity>
+            android:theme="@style/TransparentTheme"></activity>
+        <activity android:name=".zzh.View.MyBook"></activity>
     </application>
 
 </manifest>
