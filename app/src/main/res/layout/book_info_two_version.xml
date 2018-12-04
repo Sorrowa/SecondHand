@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/info_appBar"
         android:layout_width="match_parent"
-        android:layout_height="250dp">
+        android:layout_height="250dp"
+        android:fitsSystemWindows="true">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/info_collapsing_toolbar"
@@ -16,7 +18,8 @@
             android:layout_height="match_parent"
             android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
             app:contentScrim="@color/bisque"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:fitsSystemWindows="true">
 
 
             <ImageView
@@ -25,7 +28,8 @@
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/ic_launcher_round"
-                app:layout_collapseMode="parallax" />
+                app:layout_collapseMode="parallax"
+                android:fitsSystemWindows="true"/>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/info_toolbar"
@@ -57,7 +61,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
@@ -112,4 +116,4 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-</android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>

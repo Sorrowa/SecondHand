@@ -82,17 +82,7 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
         name.setText(book.getName());
         type.setText(book.getType());
         email.setText(book.getEmail());
-        introduction.setText(book.getIntroduction()+book.getIntroduction()+book.getIntroduction()
-                +book.getIntroduction()
-                +book.getIntroduction()
-                +book.getIntroduction()
-                +book.getIntroduction()
-                +book.getIntroduction()
-                +book.getIntroduction()
-                +book.getIntroduction()
-                +book.getIntroduction()
-                +book.getIntroduction()
-                +book.getIntroduction());
+        introduction.setText(book.getIntroduction());
     }
 
     /**
