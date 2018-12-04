@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.zhangzihao.secondhand.JavaBean.Book;
@@ -18,6 +19,9 @@ import com.example.zhangzihao.secondhand.zzh.Presenter.BookInfoPresenter;
 
 public class BookInfoActibity extends AppCompatActivity implements BaseView<BookInfoPresenter>{
 
+
+    //记录当前的评分等级
+    private float ratingNum;
 
     private int bookId;
 
@@ -34,6 +38,8 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
     private Button disagreeButton;
 
     private Toolbar toolbar;
+    //打分控件
+    private RatingBar ratingBar;
 
     //显示的书籍
     private Book book;
@@ -58,7 +64,26 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
 
         initeBook();
 
+        initeRating();
+
         //addView();
+    }
+
+    /**
+     * 初始化评分系统
+     */
+    private void initeRating() {
+        ratingBar.setOnRatingBarChangeListener(new RatingBar
+                .OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating
+                    , boolean fromUser) {
+                if (fromUser){
+                    Log.d("zzh","ok the rating is "+rating);
+                    ratingNum=rating;
+                }
+            }
+        });
     }
 
     /**
@@ -71,6 +96,7 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(false);
         actionBar.setDisplayUseLogoEnabled(false);
+        actionBar.setTitle(null);
 
         //显示返回键
     }
@@ -101,6 +127,7 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
         email=findViewById(R.id.book_info_email);
         introduction=findViewById(R.id.book_info_introduction);
         toolbar=findViewById(R.id.info_toolbar);
+        ratingBar=findViewById(R.id.ratingBar);
 
 //        agreeButton=findViewById(R.id.agree_button);
 //        disagreeButton=findViewById(R.id.disagree_button);
