@@ -166,5 +166,5 @@ public class MainActivity extends BaseActivity implements MainFragment.MainFragm
     public void bindPresenter(BasePresenter basePresenter) { }
 
     @Override
-    public void detachPresenter(BasePresenter basePresenter) { }
+    public void detachPresenter() { }
 }

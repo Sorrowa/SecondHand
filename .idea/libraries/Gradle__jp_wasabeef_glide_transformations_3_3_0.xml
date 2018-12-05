@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: jp.wasabeef:glide-transformations-3.3.0">
     <CLASSES>
-      <root url="file://D:/AndroidStudioSDK/.gradle/caches/transforms-1/files-1.1/glide-transformations-3.3.0.aar/e12724db13bf4299680f2096affa3d07/res" />
-      <root url="jar://D:/AndroidStudioSDK/.gradle/caches/transforms-1/files-1.1/glide-transformations-3.3.0.aar/e12724db13bf4299680f2096affa3d07/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/glide-transformations-3.3.0.aar/3c8e0c5d285cf3d291e6c32ce03db181/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/glide-transformations-3.3.0.aar/3c8e0c5d285cf3d291e6c32ce03db181/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://D:/AndroidStudioSDK/.gradle/caches/modules-2/files-2.1/jp.wasabeef/glide-transformations/3.3.0/2a7171f8219e9fbae4d79a086d96b5b2005d6292/glide-transformations-3.3.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/jp.wasabeef/glide-transformations/3.3.0/2a7171f8219e9fbae4d79a086d96b5b2005d6292/glide-transformations-3.3.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
