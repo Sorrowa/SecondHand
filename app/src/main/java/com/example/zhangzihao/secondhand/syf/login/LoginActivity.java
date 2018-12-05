@@ -69,13 +69,14 @@ public class LoginActivity extends UserActivity implements LoginView {
 
 
     @Override
-    public void showResult(Message result) {
+    public void showResult(Message result,String session) {
         Looper.prepare();
         Toast.makeText(LoginActivity.this,result.getMsg(),Toast.LENGTH_SHORT).show();
         if (result.getCode().equals("103")){
             Log.d(TAG, "showResult: "+"*****************");
             SharedPreferences.Editor editor = getSharedPreferences("user_data",MODE_PRIVATE).edit();
             editor.putString("email",ev_email.getText().toString());
+            editor.putString("session",session);
             editor.apply();
             startActivity(new Intent(LoginActivity.this,MainActivity.class));
         }

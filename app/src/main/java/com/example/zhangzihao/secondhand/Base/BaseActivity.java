@@ -14,4 +14,14 @@ public abstract class BaseActivity extends AppCompatActivity {
             return null;
         }
     }
+    public String getCurrentSession(){
+        try {
+            SharedPreferences pref = getSharedPreferences("user_data",MODE_PRIVATE );
+            //Toast.makeText(this,pref.getString("email",null),Toast.LENGTH_SHORT).show();
+            return pref.getString("session",null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

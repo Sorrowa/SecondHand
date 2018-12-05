@@ -11,12 +11,12 @@ import java.io.File;
 
 public class ModifyPresenter extends UserPresenter<ModifyView>{
     private ModifyModel modifyModel;
-    public void commitModify(User user){
+    public void commitModify(User user,String session){
         if (!isViewAttached()){
             return;
         }
         getMvpView().showLoading();
-        modifyModel = new ModifyModel(user);
+        modifyModel = new ModifyModel(user,session);
         modifyModel.params("postUser");
         modifyModel.execute(new UserCallback<Message>() {
             @Override
@@ -49,12 +49,12 @@ public class ModifyPresenter extends UserPresenter<ModifyView>{
         });
     }
 
-    public void getUser(String email){
+    public void getUser(String email,String session){
         if (!isViewAttached()){
             return ;
         }
         //getMvpView().showLoading();
-        modifyModel = new ModifyModel(email);
+        modifyModel = new ModifyModel(email,session);
         modifyModel.params("requestUser");
         modifyModel.execute(new UserCallback<User>() {
             @Override
@@ -87,11 +87,11 @@ public class ModifyPresenter extends UserPresenter<ModifyView>{
         });
     }
 
-    public void change_head(File file,String email){
+    public void change_head(File file,String email,String session){
         if (!isViewAttached()){
             return ;
         }
-        modifyModel = new ModifyModel(file,email);
+        modifyModel = new ModifyModel(file,email,session);
         modifyModel.params("changeHead");
         modifyModel.execute(new UserCallback<Message>() {
             @Override

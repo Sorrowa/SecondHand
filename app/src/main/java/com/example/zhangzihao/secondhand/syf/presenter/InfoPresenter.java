@@ -8,14 +8,14 @@ import com.example.zhangzihao.secondhand.syf.model.InfoModel;
 import com.example.zhangzihao.secondhand.syf.view.InfoView;
 
 public class InfoPresenter extends UserPresenter<InfoView> {
-    public void getData(String email){
+    public void getData(String email,String session){
         if (!isViewAttached()){
             return;
         }
         getMvpView().showLoading();
 
         DataModel.request(InfoModel.class)
-                .params(email)
+                .params(email,session)
                 .execute(new UserCallback<User>(){
 
                     @Override

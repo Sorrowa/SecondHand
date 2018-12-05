@@ -7,7 +7,9 @@ public class URL {
     public static String ROOT = "http://132.232.89.108:8081";
 
     public static String USER = ROOT + "/user";
+    public static String USER_IS_LOGIN = USER + "/is_login";
     public static String USER_LOGIN = USER + "/login";
+    public static String USER_LOGOUT = USER + "/logout";
     public static String USER_SIGN = USER + "/signUp";
     public static String USER_SELECT_BY_EMAIL = USER + "/selectByEmail";
     public static String USER_MODIFY = USER + "/updateInfo";

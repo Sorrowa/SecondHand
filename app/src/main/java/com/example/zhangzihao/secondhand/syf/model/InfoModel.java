@@ -8,11 +8,12 @@ import static com.example.zhangzihao.secondhand.Base.URL.USER_SELECT_BY_EMAIL;
 
 public class InfoModel extends UserModel {
     private static final String TAG = "InfoModel";
-    private String email;
+    private String email,session;
     @Override
     public void execute(UserCallback callback) {
         email = mParams[0];
-        requestUser(USER_SELECT_BY_EMAIL,email,callback);
+        session = mParams[1];
+        requestUser(USER_SELECT_BY_EMAIL,email,session,callback);
     }
 
 //    public void requestUser(String url,final UserCallback callback){

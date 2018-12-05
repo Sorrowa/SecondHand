@@ -1,6 +1,7 @@
 package com.example.zhangzihao.secondhand.syf.fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -9,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +34,8 @@ import com.example.zhangzihao.secondhand.syf.view.InfoView;
 
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
+import static android.content.Context.MODE_PRIVATE;
+import static android.support.constraint.Constraints.TAG;
 import static com.example.zhangzihao.secondhand.Base.URL.IMGS;
 
 
@@ -69,8 +73,10 @@ public class InfoFragment extends UserFragment implements InfoView {
     public void onResume() {
         initUI();
         String email = ((BaseActivity) getActivity()).getCurrentUser();
-        if (email != null){
-            presenter.getData(email);
+        String session = ((BaseActivity) getActivity()).getCurrentSession();
+        if (email != null && session != null){
+            Log.d(TAG, "onResume: "+email);
+            presenter.getData(email,session);
         }
         super.onResume();
     }
@@ -156,6 +162,7 @@ public class InfoFragment extends UserFragment implements InfoView {
                 .diskCacheStrategy(DiskCacheStrategy.NONE);
         head.setVisibility(View.VISIBLE);
         settings.setVisibility(View.VISIBLE);
+        Log.d(TAG, "initUI: "+user.getName());
         Glide.with(this)
                 .load(IMGS + user.getHeadPath())
                 .apply(options)

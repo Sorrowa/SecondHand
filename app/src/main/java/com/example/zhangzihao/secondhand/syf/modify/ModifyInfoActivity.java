@@ -69,8 +69,9 @@ public class ModifyInfoActivity extends UserActivity implements ModifyView ,View
     @Override
     protected void onResume() {
         String email = getCurrentUser();
+        String session = getCurrentSession();
         if (email != null){
-            presenter.getUser(email);
+            presenter.getUser(email,session);
         }
         super.onResume();
     }
@@ -122,7 +123,7 @@ public class ModifyInfoActivity extends UserActivity implements ModifyView ,View
     public void showResult(com.example.zhangzihao.secondhand.JavaBean.Message msg) {
         Looper.prepare();
         showToast(msg.getMsg());
-        presenter.getUser(getCurrentUser());
+        presenter.getUser(getCurrentUser(),getCurrentSession());
         Looper.loop();
     }
 
@@ -175,7 +176,7 @@ public class ModifyInfoActivity extends UserActivity implements ModifyView ,View
                         user.setSignature(edit.getText().toString());
                         Log.d(TAG, "onClick: "+user.getSignature());
                     }
-                    presenter.commitModify(user);
+                    presenter.commitModify(user,getCurrentSession());
                 }
             }
         });
@@ -252,7 +253,7 @@ public class ModifyInfoActivity extends UserActivity implements ModifyView ,View
             }
             //得到图片本地路径后，先删除原有头像，再上传
             File file = new File(imagePath);
-            presenter.change_head(file,getCurrentUser());
+            presenter.change_head(file,getCurrentUser(),getCurrentSession());
         }
     }
 

@@ -28,30 +28,57 @@ public class ModifyModel extends UserModel {
     private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
     private User user;
     private String email;
+    private String session;
     private File file;
-    public ModifyModel(String email){
+    public ModifyModel(String email,String session){
         this.email = email;
+        this.session = session;
     }
-    public ModifyModel(User user){
+    public ModifyModel(User user,String session){
         this.user = user;
+        this.session = session;
     }
-    public ModifyModel(File file,String email){
+    public ModifyModel(File file,String email,String session){
         this.file = file;
         this.email = email;
+        this.session = session;
     }
 
     @Override
     public void execute(UserCallback callback) {
         if (mParams[0].equals("postUser"))
-            postUser(USER_MODIFY,callback);
+            postUser(USER_MODIFY,session,callback);
         else if (mParams[0].equals("requestUser")) {
-            requestUser(USER_SELECT_BY_EMAIL, email, callback);
+            requestUser(USER_SELECT_BY_EMAIL, email,session, callback);
         }else
-            changeHead(UPLOAD_HEADS,callback);
+            changeHead(UPLOAD_HEADS,session,callback);
 
     }
 
-    private void changeHead(String url,final UserCallback callback){
+    private void logout(String url){
+        OkHttpClient okHttpClient  = new OkHttpClient.Builder()
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10,TimeUnit.SECONDS)
+                .readTimeout(20, TimeUnit.SECONDS)
+                .build();
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+            }
+        });
+    }
+
+    private void changeHead(String url,String session,final UserCallback callback){
         OkHttpClient okHttpClient  = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10,TimeUnit.SECONDS)
@@ -66,6 +93,7 @@ public class ModifyModel extends UserModel {
                 .build();
         Request request = new Request.Builder()
                 .url(url)
+                .addHeader("cookie",session)
                 .post(requestBody)
                 .build();
         Call call = okHttpClient.newCall(request);
@@ -86,7 +114,7 @@ public class ModifyModel extends UserModel {
         });
     }
 
-    private void postUser(String url, final UserCallback callback){
+    private void postUser(String url,String session, final UserCallback callback){
         OkHttpClient okHttpClient  = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10,TimeUnit.SECONDS)
@@ -97,6 +125,7 @@ public class ModifyModel extends UserModel {
         RequestBody requestBody = FormBody.create(MediaType.parse("application/json; charset=utf-8"), json);
         Request request = new Request.Builder()
                 .url(url)//请求的url
+                .addHeader("cookie",session)
                 .post(requestBody)
                 .build();
         Call call = okHttpClient.newCall(request);

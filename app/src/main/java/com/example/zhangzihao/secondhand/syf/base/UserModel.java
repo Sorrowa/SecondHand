@@ -32,6 +32,7 @@ public abstract class UserModel<T> {
     }
 
     public abstract void execute(UserCallback<T> callback);
+
 //    public void requestGetAPI(String url,UserCallback<T> callback){}
 //    public void requestPostAPI(String url,UserCallback<T> callback){}
 
@@ -47,13 +48,14 @@ public abstract class UserModel<T> {
         return user;
     }
 
-    public void requestUser(String url,String email,final UserCallback callback){
+    public void requestUser(String url,String email,String session,final UserCallback callback){
         OkHttpClient okHttpClient  = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10,TimeUnit.SECONDS)
                 .readTimeout(20, TimeUnit.SECONDS)
                 .build();
-        Request.Builder reqBuild = new Request.Builder();
+        Request.Builder reqBuild = new Request.Builder()
+                .addHeader("cookie",session);
         HttpUrl.Builder urlBuilder =HttpUrl.parse(url)
                 .newBuilder();
         urlBuilder.addQueryParameter("email", email);
