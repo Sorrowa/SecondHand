@@ -8,7 +8,7 @@ import com.example.zhangzihao.secondhand.zzh.Presenter.BasePresenter;
 public interface BaseView <P extends BasePresenter>{
 
     void bindPresenter(P p);
-    void detachPresenter(P p);
+    void detachPresenter();
 
 
 }

@@ -138,7 +138,7 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
     public void bindPresenter(BookInfoPresenter basePresenter) {}
 
     @Override
-    public void detachPresenter(BookInfoPresenter basePresenter) {}
+    public void detachPresenter() {}
 
     /**
      * 异步填充view
