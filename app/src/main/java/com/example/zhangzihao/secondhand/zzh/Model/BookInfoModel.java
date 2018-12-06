@@ -47,7 +47,7 @@ public class BookInfoModel implements BaseModel <BookInfoPresenter>{
                 book.setName(book1.getName());
                 book.setState(book1.getState());
                 book.setType(book1.getType());
-                book.setUdDate(book1.getUdDate());
+//                book.setUdDate(book1.getUdDate());
 //                Log.d("zzh","presenter ="+presenter.)
                 presenter.setBookView(book);
             }

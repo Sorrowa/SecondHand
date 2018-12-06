@@ -16,7 +16,7 @@ public class Book  {
     private String imgPath3;
     private int good;//喜欢收藏数
     private int bad;//不喜欢数
-    private Timestamp udDate;//修改时间
+//    private Timestamp udDate;//修改时间
 
     private User user;
 
@@ -68,9 +68,9 @@ public class Book  {
         return bad;
     }
 
-    public Timestamp getUdDate() {
-        return udDate;
-    }
+    //public Timestamp getUdDate() {
+//        return udDate;
+//    }
 
     public void setEmail(String email) {
         this.email = email;
@@ -116,9 +116,9 @@ public class Book  {
         this.bad = bad;
     }
 
-    public void setUdDate(Timestamp udDate) {
-        this.udDate = udDate;
-    }
+//    public void setUdDate(Timestamp udDate) {
+//        this.udDate = udDate;
+//    }
 
     public void setImgPath2(String imgPath2) {
         this.imgPath2 = imgPath2;
