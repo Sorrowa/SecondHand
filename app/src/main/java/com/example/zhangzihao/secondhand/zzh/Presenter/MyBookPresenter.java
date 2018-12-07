@@ -5,6 +5,7 @@ import com.example.zhangzihao.secondhand.zzh.View.MyBook;
 public class MyBookPresenter implements BasePresenter<MyBook> {
 
 
+    //view层对象
     private MyBook mybook;
 
 
@@ -21,5 +22,11 @@ public class MyBookPresenter implements BasePresenter<MyBook> {
     @Override
     public void bindView(MyBook view) {
         mybook=view;
+    }
+
+    /**
+     * 获取book信息
+     */
+    public void startBookInfoGet() {
     }
 }

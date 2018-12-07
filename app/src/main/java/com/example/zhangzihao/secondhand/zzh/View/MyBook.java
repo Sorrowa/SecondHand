@@ -2,11 +2,16 @@ package com.example.zhangzihao.secondhand.zzh.View;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
+import com.example.zhangzihao.secondhand.JavaBean.Book;
 import com.example.zhangzihao.secondhand.R;
+import com.example.zhangzihao.secondhand.zzh.Adapter.MyBookAdapter;
 import com.example.zhangzihao.secondhand.zzh.Presenter.MyBookPresenter;
+
+import java.util.ArrayList;
 
 public class MyBook extends AppCompatActivity implements BaseView<MyBookPresenter>{
 
@@ -15,6 +20,9 @@ public class MyBook extends AppCompatActivity implements BaseView<MyBookPresente
 
     private Toolbar toolbar;
     private RecyclerView recyclerView;
+    private MyBookAdapter myBookAdapter;
+    //记录book信息
+    private ArrayList<Book> books=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +41,11 @@ public class MyBook extends AppCompatActivity implements BaseView<MyBookPresente
      * 初始化recycleView
      */
     private void initeRecycleView() {
+        //设置布局形式：暂时为两列listView
+        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        myBookAdapter=new MyBookAdapter(books,this);
+        recyclerView.setAdapter(myBookAdapter);
+        presenter.startBookInfoGet();
     }
 
     /**
@@ -58,5 +71,13 @@ public class MyBook extends AppCompatActivity implements BaseView<MyBookPresente
     @Override
     public void detachPresenter() {
         presenter=null;
+    }
+
+
+    /**
+     * 刷新界面
+     */
+    public void setBookList(ArrayList<Book> books){
+        //todo:数据注入
     }
 }
