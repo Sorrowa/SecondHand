@@ -1,11 +1,15 @@
 package com.example.zhangzihao.secondhand.zzh.View;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.example.zhangzihao.secondhand.Base.BaseActivity;
 import com.example.zhangzihao.secondhand.JavaBean.Book;
 import com.example.zhangzihao.secondhand.R;
 import com.example.zhangzihao.secondhand.zzh.Adapter.MyBookAdapter;
@@ -13,7 +17,7 @@ import com.example.zhangzihao.secondhand.zzh.Presenter.MyBookPresenter;
 
 import java.util.ArrayList;
 
-public class MyBook extends AppCompatActivity implements BaseView<MyBookPresenter>{
+public class MyBook extends BaseActivity implements BaseView<MyBookPresenter> {
 
     //presenter对象
     private MyBookPresenter presenter;
@@ -22,7 +26,7 @@ public class MyBook extends AppCompatActivity implements BaseView<MyBookPresente
     private RecyclerView recyclerView;
     private MyBookAdapter myBookAdapter;
     //记录book信息
-    private ArrayList<Book> books=new ArrayList<>();
+    private ArrayList<Book> books = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,18 +46,23 @@ public class MyBook extends AppCompatActivity implements BaseView<MyBookPresente
      */
     private void initeRecycleView() {
         //设置布局形式：暂时为两列listView
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
-        myBookAdapter=new MyBookAdapter(books,this);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        myBookAdapter = new MyBookAdapter(books, this);
         recyclerView.setAdapter(myBookAdapter);
-        presenter.startBookInfoGet();
+        String session=getCurrentSession();
+        if (session==null){
+            Toast.makeText(this,"你还没有登陆",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        presenter.startBookInfoGet(getCurrentSession(), getCurrentUser());
     }
 
     /**
      * 注入布局元素
      */
     private void initeView() {
-        toolbar=findViewById(R.id.books_toolbar);
-        recyclerView=findViewById(R.id.my_books);
+        toolbar = findViewById(R.id.books_toolbar);
+        recyclerView = findViewById(R.id.my_books);
     }
 
 
@@ -65,19 +74,24 @@ public class MyBook extends AppCompatActivity implements BaseView<MyBookPresente
 
     @Override
     public void bindPresenter(MyBookPresenter myBookPresenter) {
-        presenter=myBookPresenter;
+        presenter = myBookPresenter;
     }
 
     @Override
     public void detachPresenter() {
-        presenter=null;
+        presenter = null;
     }
 
 
     /**
      * 刷新界面
      */
-    public void setBookList(ArrayList<Book> books){
+    public void setBookList(ArrayList<Book> books) {
         //todo:数据注入
+        this.books.clear();
+        if (null!=books){
+            this.books.addAll(books);
+        }
+        myBookAdapter.notifyDataSetChanged();
     }
 }

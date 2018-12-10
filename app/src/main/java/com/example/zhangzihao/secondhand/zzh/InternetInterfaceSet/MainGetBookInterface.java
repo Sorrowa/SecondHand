@@ -22,4 +22,7 @@ public interface MainGetBookInterface {
 
     @GET("/book/selectByType")
     Call<ArrayList<Book>> getBookByType(@Query("type")String type);
+
+    @GET("/book/selectByEmail")
+    Call<ArrayList<Book>> getBookByEmail(@Query("email")String email);
 }

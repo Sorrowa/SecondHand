@@ -220,7 +220,7 @@ public class MainFragment extends Fragment {
             this.books.addAll(books);
         }
         reAdapter.notifyDataSetChanged();
-        view.postInvalidate();
+//        view.postInvalidate();
     }
 
     public interface MainFragmentInterface {
