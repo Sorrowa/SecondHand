@@ -47,7 +47,7 @@
         <activity android:name=".zzh.View.MyBook"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/TransparentTheme"/>
+            android:theme="@style/WindowsTransparent"/>
 
 
     </application>
