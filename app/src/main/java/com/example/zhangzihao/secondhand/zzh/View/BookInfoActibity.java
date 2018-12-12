@@ -164,7 +164,7 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
 
     @Override
     protected void onDestroy() {
-        presenter.detachView(this);
+        presenter.detachView();
         presenter.detachAll();
         super.onDestroy();
     }

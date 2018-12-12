@@ -23,7 +23,7 @@ public class MyBookPresenter implements BasePresenter<MyBook> {
 
 
     @Override
-    public void detachView(MyBook view) {
+    public void detachView() {
         mybook=null;
     }
 

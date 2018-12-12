@@ -52,7 +52,7 @@
         <activity android:name=".zzh.View.PublishBookActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            android:theme="@style/WindowsTransparent">
 
         </activity>
     </application>
