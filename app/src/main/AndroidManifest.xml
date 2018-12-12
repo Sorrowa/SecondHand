@@ -41,15 +41,15 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".zzh.View.BookInfoActibity"
-            android:screenOrientation="portrait"
-            android:theme="@style/TransparentTheme"
-            android:launchMode="singleTask"/>
-        <activity android:name=".zzh.View.MyBook"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/WindowsTransparent"/>
-
-
+            android:theme="@style/TransparentTheme" />
+        <activity
+            android:name=".zzh.View.MyBook"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/WindowsTransparent" />
+        <activity android:name=".zzh.View.PublishBookActivity"></activity>
     </application>
 
 </manifest>
