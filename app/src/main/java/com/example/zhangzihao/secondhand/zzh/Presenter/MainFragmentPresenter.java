@@ -46,7 +46,7 @@ public class MainFragmentPresenter implements BasePresenter {
 
 
     @Override
-    public void detachView(BaseView view) { }
+    public void detachView() { }
 
     @Override
     public void bindView(BaseView view) { }

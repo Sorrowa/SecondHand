@@ -9,6 +9,8 @@ import com.example.zhangzihao.secondhand.zzh.Presenter.PublishBookPresenter;
 public class PublishBookActivity extends AppCompatActivity
         implements BaseView<PublishBookPresenter>{
 
+    private PublishBookPresenter presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,7 +19,7 @@ public class PublishBookActivity extends AppCompatActivity
 
     @Override
     public void bindPresenter(PublishBookPresenter publishBookPresenter) {
-
+        presenter=publishBookPresenter;
     }
 
     @Override

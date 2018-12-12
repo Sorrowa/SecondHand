@@ -8,6 +8,6 @@ import com.example.zhangzihao.secondhand.zzh.View.BaseView;
  */
 public interface BasePresenter <T extends BaseView>{
 
-    void detachView(T view);
+    void detachView();
     void bindView(T view);
 }
