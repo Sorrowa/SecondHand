@@ -3,6 +3,7 @@ package com.example.zhangzihao.secondhand.zzh.View;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,14 +11,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.example.zhangzihao.secondhand.Base.BaseActivity;
 import com.example.zhangzihao.secondhand.R;
 import com.example.zhangzihao.secondhand.zzh.Presenter.PublishBookPresenter;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class PublishBookActivity extends AppCompatActivity
+public class PublishBookActivity extends BaseActivity
         implements BaseView<PublishBookPresenter> {
 
     private PublishBookPresenter presenter;
@@ -65,7 +68,7 @@ public class PublishBookActivity extends AppCompatActivity
             public void onClick(View v) {
                 String bookName=name.getText().toString();
                 String bookIntroduction=introduction.getText().toString();
-                presenter.publishBook(bookName,bookType,bookIntroduction);
+                presenter.publishBook(bookName,bookType,bookIntroduction,getCurrentUser());
             }
         });
     }
@@ -154,5 +157,13 @@ public class PublishBookActivity extends AppCompatActivity
         if (item.getItemId() == android.R.id.home)
             finish();
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * 显示Toast
+     * @param text
+     */
+    public void showToast(String text){
+        Toast.makeText(this,text,Toast.LENGTH_SHORT).show();
     }
 }

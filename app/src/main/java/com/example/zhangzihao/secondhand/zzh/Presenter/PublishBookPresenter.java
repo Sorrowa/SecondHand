@@ -20,9 +20,20 @@ public class PublishBookPresenter implements BasePresenter<PublishBookActivity>{
      * 获取book信息
      */
     public void publishBook(String bookName,String bookType
-            ,String introduction){
+            ,String introduction,String email){
 
-        //publishModel.publishBook()
+        publishModel.publishBook(bookName,bookType,introduction,email);
+    }
+
+    /**
+     * 显示提示信息
+     */
+    public void showToast(String text){
+        mview.showToast(text);
+    }
+
+    public String getSession(){
+        return mview.getCurrentSession();
     }
 
     @Override
