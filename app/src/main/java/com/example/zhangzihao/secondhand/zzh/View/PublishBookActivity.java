@@ -1,5 +1,7 @@
 package com.example.zhangzihao.secondhand.zzh.View;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -66,11 +68,34 @@ public class PublishBookActivity extends BaseActivity
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                showPublishDialog();
+            }
+        });
+    }
+
+    /**
+     * 显示一个提示框
+     * 确认是否上传
+     */
+    private void showPublishDialog() {
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle("提示");
+        builder.setMessage("您确认提交吗？");
+        builder.setCancelable(false);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
                 String bookName=name.getText().toString();
                 String bookIntroduction=introduction.getText().toString();
                 presenter.publishBook(bookName,bookType,bookIntroduction,getCurrentUser());
             }
         });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {}
+        });
+        builder.show();
     }
 
     /**

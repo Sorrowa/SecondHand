@@ -19,11 +19,8 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/JavaBean/Message.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/JavaBean/Message.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/InternetInterfaceSet/MainGetBookInterface.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/InternetInterfaceSet/MainGetBookInterface.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/Model/PublishModel.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/Model/PublishModel.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/Presenter/PublishBookPresenter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/Presenter/PublishBookPresenter.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/View/PublishBookActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/View/PublishBookActivity.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_my_book.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_my_book.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,6 +43,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="activity_my_book.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_my_book.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="236">
+              <caret line="39" column="46" lean-forward="false" selection-start-line="39" selection-start-column="46" selection-end-line="39" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="PublishBookPresenter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/Presenter/PublishBookPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -67,7 +77,7 @@
       <file leaf-file-name="PublishModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/Model/PublishModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
+            <state relative-caret-position="180">
               <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -92,16 +102,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/MFragment/MainFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="635">
-              <caret line="121" column="41" lean-forward="false" selection-start-line="104" selection-start-column="8" selection-end-line="121" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MRetrofitTool.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/Model/MRetrofitTool.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -112,7 +112,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainGetBookInterface.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainGetBookInterface.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/InternetInterfaceSet/MainGetBookInterface.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="500">
@@ -122,49 +122,55 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Message.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/JavaBean/Message.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Book.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/JavaBean/Book.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="116" column="5" lean-forward="false" selection-start-line="116" selection-start-column="5" selection-end-line="116" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/JavaBean/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="PublishBookActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/View/PublishBookActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
-              <caret line="70" column="91" lean-forward="false" selection-start-line="70" selection-start-column="91" selection-end-line="70" selection-end-column="91" />
+            <state relative-caret-position="658">
+              <caret line="86" column="21" lean-forward="false" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
               <folding>
-                <element signature="e#1539#1881#0" expanded="true" />
-                <element signature="e#1880#1881#0" expanded="true" />
-                <element signature="e#3784#3785#0" expanded="true" />
-                <element signature="e#3816#3817#0" expanded="true" />
-                <element signature="e#4249#4250#0" expanded="true" />
-                <element signature="e#4316#4317#0" expanded="true" />
+                <element signature="e#1622#1776#0" expanded="true" />
+                <element signature="e#1775#1776#0" expanded="true" />
+                <element signature="e#2465#2466#0" expanded="true" />
+                <element signature="e#4577#4578#0" expanded="true" />
+                <element signature="e#4609#4610#0" expanded="true" />
+                <element signature="e#5042#5043#0" expanded="true" />
+                <element signature="e#5109#5110#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/Base/BaseActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="109">
+              <caret line="6" column="18" lean-forward="false" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SignUpActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/syf/signUp/SignUpActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-950">
+              <caret line="79" column="44" lean-forward="false" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="44" />
+              <folding>
+                <element signature="e#3509#3954#0" expanded="true" />
+                <element signature="e#3953#3954#0" expanded="true" />
+                <element signature="e#4003#4145#0" expanded="true" />
+                <element signature="e#4144#4145#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BasePresenter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/Base/BasePresenter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="50">
+              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -2460,7 +2466,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/MFragment/MainFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/View/MyBook.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/main_fragment_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_my_book.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/syf/fragment/InfoFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/Presenter/BasePresenter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/Presenter/BookInfoPresenter.java" />
@@ -2472,10 +2477,11 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_publish_book.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/JavaBean/Message.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/View/PublishBookActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/Presenter/PublishBookPresenter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/Model/PublishModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/InternetInterfaceSet/MainGetBookInterface.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/View/PublishBookActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_my_book.xml" />
       </list>
     </option>
   </component>
@@ -2528,13 +2534,6 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="secondhand" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="Base" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SecondHand" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="secondhand" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="JavaBean" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -2550,7 +2549,7 @@
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="secondhand" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="syf" type="462c0819:PsiDirectoryNode" />
-              <item name="fragment" type="462c0819:PsiDirectoryNode" />
+              <item name="signUp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SecondHand" type="1abcf292:AndroidViewProjectNode" />
@@ -2558,6 +2557,14 @@
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="secondhand" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="zzh" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SecondHand" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="secondhand" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="zzh" type="462c0819:PsiDirectoryNode" />
+              <item name="Adapter" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SecondHand" type="1abcf292:AndroidViewProjectNode" />
@@ -2882,20 +2889,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/syf/signUp/SignUpActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="28" column="13" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/syf/view/SignUpView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/Adapter/MainViewPagerAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -3155,17 +3148,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_my_book.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="31" column="16" lean-forward="false" selection-start-line="31" selection-start-column="16" selection-end-line="43" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_drop.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -3231,14 +3213,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/Base/BaseActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="6" column="18" lean-forward="false" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/Base/URL.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -3295,21 +3269,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/View/PublishBookActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="70" column="91" lean-forward="false" selection-start-line="70" selection-start-column="91" selection-end-line="70" selection-end-column="91" />
-          <folding>
-            <element signature="e#1539#1881#0" expanded="true" />
-            <element signature="e#1880#1881#0" expanded="true" />
-            <element signature="e#3784#3785#0" expanded="true" />
-            <element signature="e#3816#3817#0" expanded="true" />
-            <element signature="e#4249#4250#0" expanded="true" />
-            <element signature="e#4316#4317#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/Presenter/PublishBookPresenter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="446">
@@ -3326,9 +3285,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/InternetInterfaceSet/MainGetBookInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/Base/BaseActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="6" column="18" lean-forward="false" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/syf/signUp/SignUpActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-950">
+          <caret line="79" column="44" lean-forward="false" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="44" />
+          <folding>
+            <element signature="e#3509#3954#0" expanded="true" />
+            <element signature="e#3953#3954#0" expanded="true" />
+            <element signature="e#4003#4145#0" expanded="true" />
+            <element signature="e#4144#4145#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/Base/BasePresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/Model/PublishModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
+        <state relative-caret-position="180">
           <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -3342,12 +3338,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/InternetInterfaceSet/MainGetBookInterface.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/zhangzihao/secondhand/zzh/View/PublishBookActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        <state relative-caret-position="658">
+          <caret line="86" column="21" lean-forward="false" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
+          <folding>
+            <element signature="e#1622#1776#0" expanded="true" />
+            <element signature="e#1775#1776#0" expanded="true" />
+            <element signature="e#2465#2466#0" expanded="true" />
+            <element signature="e#4577#4578#0" expanded="true" />
+            <element signature="e#4609#4610#0" expanded="true" />
+            <element signature="e#5042#5043#0" expanded="true" />
+            <element signature="e#5109#5110#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_my_book.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="39" column="46" lean-forward="false" selection-start-line="39" selection-start-column="46" selection-end-line="39" selection-end-column="46" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
   </component>
