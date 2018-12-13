@@ -101,7 +101,8 @@
         android:layout_height="wrap_content"
         android:text="提交图书"
         android:textSize="20sp"
-        android:layout_margin="15dp"/>
+        android:layout_margin="15dp"
+        android:id="@+id/send_book"/>
 
 
 </LinearLayout>

@@ -4,7 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -15,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class PublishBookActivity extends AppCompatActivity
-        implements BaseView<PublishBookPresenter>{
+        implements BaseView<PublishBookPresenter> {
 
     private PublishBookPresenter presenter;
 
@@ -27,20 +30,51 @@ public class PublishBookActivity extends AppCompatActivity
 
     private EditText introduction;
 
-    private ArrayList<String> bookTypes=new ArrayList<>();
+    private ArrayList<String> bookTypes = new ArrayList<>();
+
+    private Button send;
+
+    //记录当前的bookType
+    private String bookType="小说";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publish_book);
 
-
+        presenter=new PublishBookPresenter(this);
 
         initeView();
 
         initeSpinner();
 
         initeToolbar();
+
+        initeEdit();
+
+        initeButton();
+    }
+
+    /**
+     * 提交按钮
+     */
+    private void initeButton() {
+
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String bookName=name.getText().toString();
+                String bookIntroduction=introduction.getText().toString();
+                presenter.publishBook(bookName,bookType,bookIntroduction);
+            }
+        });
+    }
+
+    /**
+     * 初始化editText
+     */
+    private void initeEdit() {
+        //todo:字符串识别等，如果以后有机会就做
     }
 
     /**
@@ -50,9 +84,6 @@ public class PublishBookActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-
     }
 
     /**
@@ -61,15 +92,24 @@ public class PublishBookActivity extends AppCompatActivity
     private void initeSpinner() {
         initeTypes();
 
-        ArrayAdapter<String> stringArrayAdapter=new ArrayAdapter<>(this
-                ,R.layout.item_selected,bookTypes);
+        ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<>(this
+                , R.layout.item_selected, bookTypes);
 
         stringArrayAdapter.setDropDownViewResource(R.layout.item_drop);
-
         type.setAdapter(stringArrayAdapter);
+        type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view
+                    , int position, long id) {
+                bookType=bookTypes.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
     }
 
-    private void initeTypes(){
+    private void initeTypes() {
         bookTypes.add("小说");
         bookTypes.add("心理");
         bookTypes.add("艺术");
@@ -85,31 +125,33 @@ public class PublishBookActivity extends AppCompatActivity
      * 初始化布局元素
      */
     private void initeView() {
-        toolbar=findViewById(R.id.toolbar);
-        name=findViewById(R.id.book_name);
-        type=findViewById(R.id.book_type);
-        introduction=findViewById(R.id.book_introduction);
+        toolbar = findViewById(R.id.toolbar);
+        name = findViewById(R.id.book_name);
+        type = findViewById(R.id.book_type);
+        introduction = findViewById(R.id.book_introduction);
+        send=findViewById(R.id.send_book);
     }
 
     @Override
     public void bindPresenter(PublishBookPresenter publishBookPresenter) {
-        presenter=publishBookPresenter;
+        presenter = publishBookPresenter;
     }
 
     @Override
     public void detachPresenter() {
-        presenter=null;
+        presenter = null;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        presenter.detachView();
         detachPresenter();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId()==android.R.id.home)
+        if (item.getItemId() == android.R.id.home)
             finish();
         return super.onOptionsItemSelected(item);
     }
