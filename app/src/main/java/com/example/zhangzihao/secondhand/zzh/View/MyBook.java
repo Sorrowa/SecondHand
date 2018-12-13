@@ -1,12 +1,10 @@
 package com.example.zhangzihao.secondhand.zzh.View;
 
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.zhangzihao.secondhand.Base.BaseActivity;
@@ -16,6 +14,7 @@ import com.example.zhangzihao.secondhand.zzh.Adapter.MyBookAdapter;
 import com.example.zhangzihao.secondhand.zzh.Presenter.MyBookPresenter;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MyBook extends BaseActivity implements BaseView<MyBookPresenter> {
 
@@ -63,6 +62,10 @@ public class MyBook extends BaseActivity implements BaseView<MyBookPresenter> {
     private void initeView() {
         toolbar = findViewById(R.id.books_toolbar);
         recyclerView = findViewById(R.id.my_books);
+
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -93,5 +96,15 @@ public class MyBook extends BaseActivity implements BaseView<MyBookPresenter> {
             this.books.addAll(books);
         }
         myBookAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

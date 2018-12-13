@@ -10,24 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:contentScrim="@color/beige"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax"
-                android:background="@color/beige"/>
-
             <android.support.v7.widget.Toolbar
                 android:id="@+id/books_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin">
+                app:popupTheme="@style/Base.Theme.AppCompat.Light.DarkActionBar"
+                android:layout_marginTop="10dp"
+                app:titleTextColor="@color/whitesmoke">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -39,13 +28,14 @@
                         android:layout_height="match_parent"
                         android:paddingTop="10dp"
                         android:text="我的图书"
+                        android:textColor="@color/whitesmoke"
                         android:textSize="20sp"
+                        android:layout_marginEnd="70dp"
                         android:gravity="center_horizontal"
                         android:layout_gravity="center_horizontal"/>
 
                 </LinearLayout>
             </android.support.v7.widget.Toolbar>
-        </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
