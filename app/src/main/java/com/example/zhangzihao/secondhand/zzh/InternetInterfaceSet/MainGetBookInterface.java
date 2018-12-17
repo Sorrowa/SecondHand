@@ -35,4 +35,8 @@ public interface MainGetBookInterface {
     @Headers({"Content-Type: application/json","Accept: application/json"})
     @POST("/book/publish")
     Call<Message> publishBook(@Body RequestBody body);
+
+    @Headers({"Content-Type: application/json","Accept: application/json"})
+    @POST("/upload/books")
+    Call<Message> publishImage(@Body RequestBody body);
 }

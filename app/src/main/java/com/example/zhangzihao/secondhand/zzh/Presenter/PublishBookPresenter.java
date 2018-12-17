@@ -1,5 +1,7 @@
 package com.example.zhangzihao.secondhand.zzh.Presenter;
 
+import android.net.Uri;
+
 import com.example.zhangzihao.secondhand.zzh.Model.PublishModel;
 import com.example.zhangzihao.secondhand.zzh.View.PublishBookActivity;
 
@@ -19,10 +21,10 @@ public class PublishBookPresenter implements BasePresenter<PublishBookActivity>{
     /**
      * 获取book信息
      */
-    public void publishBook(String bookName,String bookType
-            ,String introduction,String email){
+    public void publishBook(String bookName, String bookType
+            , String introduction, String email, Uri uri){
 
-        publishModel.publishBook(bookName,bookType,introduction,email);
+        publishModel.publishBook(bookName,bookType,introduction,email,uri);
     }
 
     /**

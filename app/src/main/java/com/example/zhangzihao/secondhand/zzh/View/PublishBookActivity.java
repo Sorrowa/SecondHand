@@ -1,6 +1,8 @@
 package com.example.zhangzihao.secondhand.zzh.View;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,6 +46,9 @@ public class PublishBookActivity extends BaseActivity
     //记录当前的bookType
     private String bookType="小说";
 
+    //存储图片的url
+    private Uri imageUri;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +85,10 @@ public class PublishBookActivity extends BaseActivity
         sendImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent, 111);
             }
         });
     }
@@ -99,7 +107,12 @@ public class PublishBookActivity extends BaseActivity
             public void onClick(DialogInterface dialog, int which) {
                 String bookName=name.getText().toString();
                 String bookIntroduction=introduction.getText().toString();
-                presenter.publishBook(bookName,bookType,bookIntroduction,getCurrentUser());
+                if (bookName.equals("")){
+                    showToast("书名不能为空!!");
+                    return;
+                }
+                presenter.publishBook(bookName,bookType,bookIntroduction,getCurrentUser()
+                        ,imageUri);
             }
         });
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -202,5 +215,20 @@ public class PublishBookActivity extends BaseActivity
      */
     public void showToast(String text){
         Toast.makeText(this,text,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_CANCELED) {
+            showToast("取消了选择图片");
+            return;
+        }
+
+        try {
+            imageUri = data.getData();
+            Log.e("TAG", imageUri.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
