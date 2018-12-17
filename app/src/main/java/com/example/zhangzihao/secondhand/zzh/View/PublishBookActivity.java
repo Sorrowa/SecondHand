@@ -39,6 +39,8 @@ public class PublishBookActivity extends BaseActivity
 
     private Button send;
 
+    private Button sendImage;
+
     //记录当前的bookType
     private String bookType="小说";
 
@@ -70,6 +72,15 @@ public class PublishBookActivity extends BaseActivity
             public void onClick(View v) {
 
                 showPublishDialog();
+            }
+        });
+
+        //todo:设置上传图片的button
+
+        sendImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
             }
         });
     }
@@ -158,6 +169,7 @@ public class PublishBookActivity extends BaseActivity
         type = findViewById(R.id.book_type);
         introduction = findViewById(R.id.book_introduction);
         send=findViewById(R.id.send_book);
+        sendImage=findViewById(R.id.publish_image);
     }
 
     @Override
