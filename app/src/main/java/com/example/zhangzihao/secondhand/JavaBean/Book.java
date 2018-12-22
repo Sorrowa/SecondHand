@@ -1,6 +1,7 @@
 package com.example.zhangzihao.secondhand.JavaBean;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class Book  {
     private Integer bookId;
@@ -9,7 +10,7 @@ public class Book  {
     private String type;//图书类型
     private int state;//图书状态
     private String introduction;//简介
-//    private Date date;//发布日期
+    private Date date;//发布日期
     private String imgPath;
     private String imgPath2;
     private String imgPath3;
@@ -43,9 +44,9 @@ public class Book  {
         return introduction;
     }
 
-//    public Date getDate() {
-//        return date;
-//    }
+    public Date getDate() {
+        return date;
+    }
 
     public String getImgPath() {
         return imgPath;
@@ -67,7 +68,7 @@ public class Book  {
         return bad;
     }
 
-//    public Timestamp getUdDate() {
+    //public Timestamp getUdDate() {
 //        return udDate;
 //    }
 
@@ -95,9 +96,9 @@ public class Book  {
         this.introduction = introduction;
     }
 
-//    public void setDate(Date date) {
-//        this.date = date;
-//    }
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public void setImgPath(String imgPath) {
         this.imgPath = imgPath;

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.zhangzihao.secondhand.JavaBean.Book;
 import com.example.zhangzihao.secondhand.R;
 import com.example.zhangzihao.secondhand.zzh.View.BookInfoActibity;
@@ -85,6 +86,9 @@ public class MyAdapterForMainRecycleView extends RecyclerView.Adapter<MyAdapterF
             bookName.setText(book.getName());
             //bookWords.setText(book.getIntroduction());
             bookType.setText(book.getType());
+            if (book.getImgPath()!=null){
+                Glide.with(context).load(book.getImgPath()).into(mimageView);
+            }
         }
     }
 }

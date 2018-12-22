@@ -51,7 +51,7 @@ public class BookInfoPresenter implements BasePresenter<BookInfoActibity> {
 
 
     @Override
-    public void detachView(BookInfoActibity view) {
+    public void detachView() {
         v=null;
     }
 

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.zhangzihao.secondhand.JavaBean.Book;
 import com.example.zhangzihao.secondhand.R;
 import com.example.zhangzihao.secondhand.zzh.Presenter.BasePresenter;
@@ -109,6 +110,9 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
         type.setText("图书类型: "+book.getType());
         email.setText("联系人邮箱: "+book.getEmail());
         introduction.setText("图书基本介绍: "+book.getIntroduction());
+        if (book.getImgPath()!=null){
+            Glide.with(this).load(book.getImgPath()).into(bookImage);
+        }
     }
 
     /**
@@ -128,6 +132,7 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
         introduction=findViewById(R.id.book_info_introduction);
         toolbar=findViewById(R.id.info_toolbar);
         ratingBar=findViewById(R.id.ratingBar);
+        bookImage=findViewById(R.id.image_book);
 
 //        agreeButton=findViewById(R.id.agree_button);
 //        disagreeButton=findViewById(R.id.disagree_button);
@@ -164,7 +169,7 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
 
     @Override
     protected void onDestroy() {
-        presenter.detachView(this);
+        presenter.detachView();
         presenter.detachAll();
         super.onDestroy();
     }

@@ -31,6 +31,8 @@ import com.example.zhangzihao.secondhand.syf.login.LoginActivity;
 import com.example.zhangzihao.secondhand.syf.modify.ModifyInfoActivity;
 import com.example.zhangzihao.secondhand.syf.presenter.InfoPresenter;
 import com.example.zhangzihao.secondhand.syf.view.InfoView;
+import com.example.zhangzihao.secondhand.zzh.View.MyBook;
+import com.example.zhangzihao.secondhand.zzh.View.PublishBookActivity;
 
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
@@ -106,7 +108,10 @@ public class InfoFragment extends UserFragment implements InfoView {
             public void onClick(View view) {
                 /**
                  * zzh查看自己图书的跳转逻辑写到这里哦！
+                 * syf我爱你哟
                  */
+                Intent intent=new Intent(getActivity(), MyBook.class);
+                startActivity(intent);
             }
         });
 
@@ -114,8 +119,11 @@ public class InfoFragment extends UserFragment implements InfoView {
             @Override
             public void onClick(View view) {
                 /**
+                 * zzh表示暂时占用了这个位置用来写发布图书界面
                  * dyx查看交易记录的跳转逻辑写到这里哦！
                  */
+                Intent intent=new Intent(getActivity(), PublishBookActivity.class);
+                startActivity(intent);
             }
         });
 
