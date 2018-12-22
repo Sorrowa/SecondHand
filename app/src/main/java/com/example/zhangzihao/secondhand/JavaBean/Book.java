@@ -1,7 +1,6 @@
 package com.example.zhangzihao.secondhand.JavaBean;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 public class Book  {
     private Integer bookId;
@@ -10,13 +9,13 @@ public class Book  {
     private String type;//图书类型
     private int state;//图书状态
     private String introduction;//简介
-    private Date date;//发布日期
+//    private Date date;//发布日期
     private String imgPath;
     private String imgPath2;
     private String imgPath3;
     private int good;//喜欢收藏数
     private int bad;//不喜欢数
-    private Timestamp udDate;//修改时间
+//    private Timestamp udDate;//修改时间
 
     private User user;
 
@@ -44,9 +43,9 @@ public class Book  {
         return introduction;
     }
 
-    public Date getDate() {
-        return date;
-    }
+//    public Date getDate() {
+//        return date;
+//    }
 
     public String getImgPath() {
         return imgPath;
@@ -68,9 +67,9 @@ public class Book  {
         return bad;
     }
 
-    public Timestamp getUdDate() {
-        return udDate;
-    }
+//    public Timestamp getUdDate() {
+//        return udDate;
+//    }
 
     public void setEmail(String email) {
         this.email = email;
@@ -96,9 +95,9 @@ public class Book  {
         this.introduction = introduction;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+//    public void setDate(Date date) {
+//        this.date = date;
+//    }
 
     public void setImgPath(String imgPath) {
         this.imgPath = imgPath;
@@ -116,9 +115,9 @@ public class Book  {
         this.bad = bad;
     }
 
-    public void setUdDate(Timestamp udDate) {
-        this.udDate = udDate;
-    }
+//    public void setUdDate(Timestamp udDate) {
+//        this.udDate = udDate;
+//    }
 
     public void setImgPath2(String imgPath2) {
         this.imgPath2 = imgPath2;
