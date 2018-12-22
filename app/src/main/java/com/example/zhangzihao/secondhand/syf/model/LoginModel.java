@@ -19,6 +19,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.Headers;
+import okhttp3.HttpUrl;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -27,27 +28,34 @@ import okhttp3.Response;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.zhangzihao.secondhand.Base.URL.USER_LOGIN;
+import static com.example.zhangzihao.secondhand.Base.URL.USER_RESET;
 
 public class LoginModel extends UserModel {
     private static final String TAG = "LoginModel";
     private String email,pwd;
+    private OkHttpClient okHttpClient  = new OkHttpClient.Builder()
+            .connectTimeout(10, TimeUnit.SECONDS)
+            .writeTimeout(10,TimeUnit.SECONDS)
+            .readTimeout(20, TimeUnit.SECONDS)
+            .build();
 
+    public LoginModel(){}
     public LoginModel(String email,String pwd){
         this.email = email;
         this.pwd = pwd;
     }
 
-    @Override
-    public UserModel params(String... params) {
-        email = params[0];
-        pwd = params[1];
-        return this;
-    }
+//    @Override
+//    public UserModel params(String... params) {
+//        email = params[0];
+//        return this;
+//    }
 
     @Override
     public void execute(UserCallback callback) {
-//        Log.d(TAG, "execute: "+email+"\t"+pwd);
-//        requestPostAPI(USER_LOGIN,callback);
+        email = mParams[0];
+        Log.d(TAG, "execute: "+email);
+        resetPwd(USER_RESET,callback);
     }
 
     public void execute(LoginCallback callback){
@@ -55,12 +63,33 @@ public class LoginModel extends UserModel {
         requestPostAPI(USER_LOGIN,callback);
     }
 
+    private void resetPwd(String url, final UserCallback callback){
+        Request.Builder reqBuild = new Request.Builder();
+        HttpUrl.Builder urlBuilder =HttpUrl.parse(url)
+                .newBuilder();
+        urlBuilder.addQueryParameter("email", email);
+        reqBuild.url(urlBuilder.build());
+        Request request = reqBuild.build();
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.d(TAG, "onFailure: ");
+                callback.onComplete();
+                callback.onFailure(e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String data = response.body().string();
+                Message msg = parseLogin(data);
+                callback.onComplete();
+                callback.onSuccess(msg);
+            }
+        });
+    }
+
     private void requestPostAPI(String url, final LoginCallback callback) {
-        OkHttpClient okHttpClient  = new OkHttpClient.Builder()
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .writeTimeout(10,TimeUnit.SECONDS)
-                .readTimeout(20, TimeUnit.SECONDS)
-                .build();
         FormBody formBody = new FormBody.Builder()
                 .add("email",email)
                 .add("pwd",pwd)

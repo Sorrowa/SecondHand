@@ -13,6 +13,7 @@ public class URL {
     public static String USER_SIGN = USER + "/signUp";
     public static String USER_SELECT_BY_EMAIL = USER + "/selectByEmail";
     public static String USER_MODIFY = USER + "/updateInfo";
+    public static String USER_RESET = USER + "/reset";
 
     public static String BOOK = ROOT + "/book";
     public static String BOOK_PUBLISH = BOOK + "/publish";//发布图书，POST方法，参数类型是"application/json"

@@ -194,7 +194,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
-                android:text="我的交易"
+                android:text="发布图书"
                 android:textSize="22sp"/>
             <ImageView
                 android:layout_width="35dp"
