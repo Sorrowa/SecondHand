@@ -8,7 +8,7 @@ import com.example.zhangzihao.secondhand.zzh.View.PublishBookActivity;
 public class PublishBookPresenter implements BasePresenter<PublishBookActivity>{
 
 
-    private PublishBookActivity mview;
+    public PublishBookActivity mview;
 
     private PublishModel publishModel;
 

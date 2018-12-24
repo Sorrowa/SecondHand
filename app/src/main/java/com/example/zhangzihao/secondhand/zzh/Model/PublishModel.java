@@ -1,6 +1,9 @@
 package com.example.zhangzihao.secondhand.zzh.Model;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Environment;
 import android.util.Log;
 
 import com.example.zhangzihao.secondhand.JavaBean.Book;
@@ -10,7 +13,9 @@ import com.example.zhangzihao.secondhand.zzh.JavaBean.ImagePublish;
 import com.example.zhangzihao.secondhand.zzh.Presenter.PublishBookPresenter;
 import com.google.gson.Gson;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -22,6 +27,8 @@ import retrofit2.Retrofit;
 
 public class PublishModel implements BaseModel<PublishBookPresenter> {
 
+
+    public final String FILE_ROOT="/Second/";
 
     private PublishBookPresenter p;
     private Retrofit retrofit;
@@ -96,8 +103,27 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
     private void publishImage(String bookid, Uri uri) throws URISyntaxException {
         MainGetBookInterface mainGetBookInterface=retrofit.create(MainGetBookInterface
                 .class);
+        //处理url，
+        String imagePath=Tool.doForImageUrl(uri,p.mview);
+
+        Bitmap image= BitmapFactory.decodeFile(imagePath);
+
+        File file = new File(Environment
+                .getExternalStorageDirectory(), "image.jpg");
+
+        try {
+            BufferedOutputStream bufferedOutputStream=new BufferedOutputStream(
+                    new FileOutputStream(file));
+            image.compress(Bitmap.CompressFormat.JPEG, 100
+                    , bufferedOutputStream);
+            bufferedOutputStream.flush();
+            bufferedOutputStream.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         ImagePublish imagePublish=new ImagePublish(bookid
-                ,new File(new URI(uri.toString())));
+                ,file);
 
         Gson gson=new Gson();
         String route=gson.toJson(imagePublish);
