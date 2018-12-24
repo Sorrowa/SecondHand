@@ -54,4 +54,42 @@ public class LoginPresenter extends UserPresenter<LoginView> {
         });
     }
 
+    public void resetPwd(String email){
+        if (!isViewAttached()){
+            return;
+        }
+        getMvpView().showLoading();
+        DataModel.request(LoginModel.class)
+                .params(email)
+                .execute(new UserCallback<Message>() {
+                    @Override
+                    public void onSuccess(Message msg) {
+                        if (isViewAttached()){
+                            getMvpView().showResult(msg);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        if (isViewAttached()){
+                            getMvpView().showErr();
+                        }
+                    }
+
+                    @Override
+                    public void onError() {
+                        if (isViewAttached()){
+                            getMvpView().showErr();
+                        }
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        if (isViewAttached()){
+                            getMvpView().hideLoading();
+                        }
+                    }
+                });
+    }
+
 }
