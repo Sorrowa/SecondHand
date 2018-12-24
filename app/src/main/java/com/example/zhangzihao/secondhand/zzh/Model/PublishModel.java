@@ -1,9 +1,13 @@
 package com.example.zhangzihao.secondhand.zzh.Model;
 
+import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.util.Log;
 
 import com.example.zhangzihao.secondhand.JavaBean.Book;
@@ -104,32 +108,13 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
         MainGetBookInterface mainGetBookInterface=retrofit.create(MainGetBookInterface
                 .class);
         //处理url，
-        String imagePath=Tool.doForImageUrl(uri,p.mview);
+        String Path=getRealPathFromUri_AboveApi19(p.mview,uri);
 
-        Bitmap image= BitmapFactory.decodeFile(imagePath);
 
-        File file = new File(p.mview.getFilesDir().getAbsolutePath()
-                +"image.png");
-
-        if (!file.exists()){
-            file.mkdir();
-        }else {
-            file.delete();
-            file.mkdir();
-        }
-
-        try {
-            FileOutputStream fileOutputStream=new FileOutputStream(file);
-            image.compress(Bitmap.CompressFormat.JPEG, 50
-                    , fileOutputStream);
-            fileOutputStream.flush();
-            fileOutputStream.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        Log.d("zzh","path:"+Path);
 
         ImagePublish imagePublish=new ImagePublish(bookid
-                ,file);
+                ,new File(Path));
 
         Gson gson=new Gson();
         String route=gson.toJson(imagePublish);
@@ -164,5 +149,34 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
     @Override
     public void detachPresenter() {
         p = null;
+    }
+
+    /**
+     * 获取图片的绝对路径
+     * @param context
+     * @param uri
+     * @return
+     */
+    private String getRealPathFromUri_AboveApi19(Context context,Uri uri) {
+        String filePath = null;
+        String wholeID = DocumentsContract.getDocumentId(uri);
+
+        // 使用':'分割
+        String id = wholeID.split(":")[1];
+
+        String[] projection = { MediaStore.Images.Media.DATA };
+        String selection = MediaStore.Images.Media._ID + "=?";
+        String[] selectionArgs = { id };
+
+        Cursor cursor = context.getContentResolver().query(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, projection,
+                selection, selectionArgs, null);
+        int columnIndex = cursor.getColumnIndex(projection[0]);
+
+        if (cursor.moveToFirst()) {
+            filePath = cursor.getString(columnIndex);
+        }
+        cursor.close();
+        return filePath;
     }
 }
