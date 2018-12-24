@@ -108,16 +108,22 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
 
         Bitmap image= BitmapFactory.decodeFile(imagePath);
 
-        File file = new File(Environment
-                .getExternalStorageDirectory(), "image.jpg");
+        File file = new File(p.mview.getFilesDir().getAbsolutePath()
+                +"image.png");
+
+        if (!file.exists()){
+            file.mkdir();
+        }else {
+            file.delete();
+            file.mkdir();
+        }
 
         try {
-            BufferedOutputStream bufferedOutputStream=new BufferedOutputStream(
-                    new FileOutputStream(file));
-            image.compress(Bitmap.CompressFormat.JPEG, 100
-                    , bufferedOutputStream);
-            bufferedOutputStream.flush();
-            bufferedOutputStream.close();
+            FileOutputStream fileOutputStream=new FileOutputStream(file);
+            image.compress(Bitmap.CompressFormat.JPEG, 50
+                    , fileOutputStream);
+            fileOutputStream.flush();
+            fileOutputStream.close();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -138,10 +144,14 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
         call.enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
+                //检测回调信息是否正确
+                Log.i("zzh", "response is "
+                        +String.valueOf(response.body()));
             }
 
             @Override
             public void onFailure(Call<Message> call, Throwable t) {
+                Log.i("zzh",t.toString());
             }
         });
     }
