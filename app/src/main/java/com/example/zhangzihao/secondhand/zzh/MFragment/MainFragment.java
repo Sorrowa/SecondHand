@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.zhangzihao.secondhand.zzh.Adapter.MyAdapterForMainRecycleView;
 import com.example.zhangzihao.secondhand.JavaBean.Book;
@@ -219,7 +220,14 @@ public class MainFragment extends Fragment {
             this.books.clear();
             this.books.addAll(books);
         }
-        reAdapter.notifyDataSetChanged();
+        if (null!=reAdapter){
+            reAdapter.notifyDataSetChanged();
+        }else {
+            reAdapter = new MyAdapterForMainRecycleView(context, books);
+//            Toast.makeText(context,"搜索失败",Toast.LENGTH_SHORT)
+//                .show();
+    }
+
 //        view.postInvalidate();
     }
 
