@@ -126,6 +126,7 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
         RequestBody requestBody=new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("file","book_image",fileBody)
+                .addFormDataPart("bookId",bookid)
                 .build();
 
 //        RequestBody requestBody=RequestBody.create(okhttp3
@@ -133,7 +134,7 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
 //                        .parse("application/json; charset=utf-8")
 //                ,route);
 
-        Call<Message> call=mainGetBookInterface.publishImage(bookid,requestBody);
+        Call<Message> call=mainGetBookInterface.publishImage(requestBody);
 
         call.enqueue(new Callback<Message>() {
             @Override
