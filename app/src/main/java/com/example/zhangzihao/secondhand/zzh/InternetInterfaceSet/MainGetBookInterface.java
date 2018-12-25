@@ -6,6 +6,7 @@ import com.example.zhangzihao.secondhand.JavaBean.Message;
 import java.util.ArrayList;
 import java.util.Map;
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -40,7 +41,9 @@ public interface MainGetBookInterface {
     @POST("/book/publish")
     Call<Message> publishBook(@Body RequestBody body);
 
+    @Multipart
     @Headers({"Content-Type: application/json","Accept: application/json"})
     @POST("/upload/books")
-    Call<Message> publishImage(@Body RequestBody body);
+    Call<Message> publishImage(@Part("file")MultipartBody.Part file,
+                               @Part("bookId")String bookId);
 }

@@ -123,18 +123,21 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
 
         RequestBody fileBody=RequestBody.create(MediaType.parse("image/png"),file);
 
-        RequestBody requestBody=new MultipartBody.Builder()
-                .setType(MultipartBody.FORM)
-                .addFormDataPart("file","book_image",fileBody)
-                .addFormDataPart("bookId",bookid)
-                .build();
+        MultipartBody.Part fileBy=MultipartBody.Part.createFormData("file"
+                ,file.getName(),fileBody);
+
+//        RequestBody requestBody=new MultipartBody.Builder()
+//                .setType(MultipartBody.FORM)
+//                .addFormDataPart("file","book_image",fileBody)
+//                .addFormDataPart("bookId",bookid)
+//                .build();
 
 //        RequestBody requestBody=RequestBody.create(okhttp3
 //                        .MediaType
 //                        .parse("application/json; charset=utf-8")
 //                ,route);
 
-        Call<Message> call=mainGetBookInterface.publishImage(requestBody);
+        Call<Message> call=mainGetBookInterface.publishImage(fileBy,bookid);
 
         call.enqueue(new Callback<Message>() {
             @Override
