@@ -146,6 +146,8 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
 //                        .parse("application/json; charset=utf-8")
 //                ,route);
 
+        builder.setType(MultipartBody.FORM);
+
         Call<Message> call=mainGetBookInterface.publishImage(builder.build());
 
         call.enqueue(new Callback<Message>() {
