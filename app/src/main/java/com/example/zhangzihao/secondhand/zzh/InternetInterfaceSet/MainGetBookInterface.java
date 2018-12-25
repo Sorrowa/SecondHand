@@ -4,6 +4,7 @@ import com.example.zhangzihao.secondhand.JavaBean.Book;
 import com.example.zhangzihao.secondhand.JavaBean.Message;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -12,7 +13,9 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 
 public interface MainGetBookInterface {
@@ -37,6 +40,7 @@ public interface MainGetBookInterface {
     Call<Message> publishBook(@Body RequestBody body);
 
     @Headers({"Content-Type: application/json","Accept: application/json"})
+    @Multipart
     @POST("/upload/books")
     Call<Message> publishImage(@Body RequestBody body);
 }

@@ -252,7 +252,6 @@ public class PublishBookActivity extends BaseActivity
             showToast("取消了选择图片");
             return;
         }
-
         try {
             imageUri = data.getData();
             Log.e("TAG", imageUri.toString());

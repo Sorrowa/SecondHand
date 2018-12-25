@@ -1,5 +1,6 @@
 package com.example.zhangzihao.secondhand.zzh.Model;
 
+import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -22,7 +23,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.Map;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -110,19 +115,20 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
         //处理url，
         String Path=getRealPathFromUri_AboveApi19(p.mview,uri);
 
+        File file=new File(Path);
 
-        Log.d("zzh","path:"+Path);
+        RequestBody fileBody=RequestBody.create(MediaType.parse("image/png"),file);
 
-        ImagePublish imagePublish=new ImagePublish(bookid
-                ,new File(Path));
+        RequestBody requestBody=new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("file","book_image",fileBody)
+                .addFormDataPart("bookId",bookid)
+                .build();
 
-        Gson gson=new Gson();
-        String route=gson.toJson(imagePublish);
-
-        RequestBody requestBody=RequestBody.create(okhttp3
-                        .MediaType
-                        .parse("application/json; charset=utf-8")
-                ,route);
+//        RequestBody requestBody=RequestBody.create(okhttp3
+//                        .MediaType
+//                        .parse("application/json; charset=utf-8")
+//                ,route);
 
         Call<Message> call=mainGetBookInterface.publishImage(requestBody);
 
@@ -158,25 +164,35 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
      * @return
      */
     private String getRealPathFromUri_AboveApi19(Context context,Uri uri) {
-        String filePath = null;
-        String wholeID = DocumentsContract.getDocumentId(uri);
-
-        // 使用':'分割
-        String id = wholeID.split(":")[1];
-
-        String[] projection = { MediaStore.Images.Media.DATA };
-        String selection = MediaStore.Images.Media._ID + "=?";
-        String[] selectionArgs = { id };
-
-        Cursor cursor = context.getContentResolver().query(
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, projection,
-                selection, selectionArgs, null);
-        int columnIndex = cursor.getColumnIndex(projection[0]);
-
-        if (cursor.moveToFirst()) {
-            filePath = cursor.getString(columnIndex);
+        String imagePath=null;
+        if (DocumentsContract.isDocumentUri(context, uri)) {
+            String docId = DocumentsContract.getDocumentId(uri);
+            if ("com.android.providers.media.documents".equals(uri.getAuthority())) {
+                String id = docId.split(":")[1];
+                String selection = MediaStore.Images.Media._ID + "=" + id;
+                imagePath = getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, selection,context);
+            } else if ("com.android.providers.downloads.documents".equals(uri.getAuthority())) {
+                Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(docId));
+                imagePath = getImagePath(contentUri, null,context);
+            }
+        } else if ("content".equalsIgnoreCase(uri.getScheme())) {
+            imagePath = getImagePath(uri, null,context);
+        } else if ("file".equalsIgnoreCase(uri.getScheme())) {
+            imagePath = uri.getPath();
         }
-        cursor.close();
-        return filePath;
+        return imagePath;
+    }
+
+    private String getImagePath(Uri uri,String selection,Context context){
+        String path=null;
+        Cursor cursor=context.getContentResolver().query(uri
+                ,null,selection,null,null);
+        if(cursor!=null){
+            if(cursor.moveToFirst()){
+                path=cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+            }
+            cursor.close();
+        }
+        return path;
     }
 }

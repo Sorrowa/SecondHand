@@ -19,6 +19,8 @@ import com.example.zhangzihao.secondhand.zzh.View.BookInfoActibity;
 
 import java.util.ArrayList;
 
+import static com.example.zhangzihao.secondhand.Base.URL.IMGS;
+
 /**
  * 给main界面提供一个RecycleView的适配器
  */
@@ -87,7 +89,9 @@ public class MyAdapterForMainRecycleView extends RecyclerView.Adapter<MyAdapterF
             //bookWords.setText(book.getIntroduction());
             bookType.setText(book.getType());
             if (book.getImgPath()!=null){
-                Glide.with(context).load(book.getImgPath()).into(mimageView);
+                Glide.with(context)
+                        .load(IMGS+book.getImgPath())
+                        .into(mimageView);
             }
         }
     }
