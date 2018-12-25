@@ -126,6 +126,9 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
         MultipartBody.Part fileBy=MultipartBody.Part.createFormData("file"
                 ,file.getName(),fileBody);
 
+        RequestBody firstBody = RequestBody.create( MediaType.parse("multipart/form-data")
+                , bookid);
+
 //        RequestBody requestBody=new MultipartBody.Builder()
 //                .setType(MultipartBody.FORM)
 //                .addFormDataPart("file","book_image",fileBody)
@@ -137,7 +140,7 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
 //                        .parse("application/json; charset=utf-8")
 //                ,route);
 
-        Call<Message> call=mainGetBookInterface.publishImage(fileBy,bookid);
+        Call<Message> call=mainGetBookInterface.publishImage(fileBy,firstBody);
 
         call.enqueue(new Callback<Message>() {
             @Override

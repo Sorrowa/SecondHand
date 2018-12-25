@@ -45,5 +45,5 @@ public interface MainGetBookInterface {
     @Headers({"Content-Type: application/json","Accept: application/json"})
     @POST("/upload/books")
     Call<Message> publishImage(@Part MultipartBody.Part file,
-                               @Part("bookId")String bookId);
+                               @Part("bookId")RequestBody bookId);
 }
