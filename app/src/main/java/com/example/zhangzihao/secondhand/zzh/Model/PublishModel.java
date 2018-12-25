@@ -21,13 +21,17 @@ import com.google.gson.Gson;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -110,8 +114,6 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
      * @param uri 图片uri
      */
     private void publishImage(String bookid, Uri uri) throws URISyntaxException {
-        MainGetBookInterface mainGetBookInterface=retrofit.create(MainGetBookInterface
-                .class);
         //处理url，
         String Path=getRealPathFromUri_AboveApi19(p.mview,uri);
 
@@ -121,46 +123,37 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
 
         File file=new File(Path);
 
-        RequestBody fileBody=RequestBody.create(MediaType.parse("image/png"),file);
-
-        MultipartBody.Builder builder=new MultipartBody.Builder();
-
-        builder.addFormDataPart("file",file.getName(),fileBody);
-        builder.addFormDataPart("bookId",bookid);
+//        RequestBody fileBody=RequestBody.create(MediaType.parse("image/png"),file);
 
 
-//        MultipartBody.Part fileBy=MultipartBody.Part.createFormData("file"
-//                ,file.getName(),fileBody);
-//
-//        RequestBody firstBody = RequestBody.create( MediaType.parse("multipart/form-data")
-//                , bookid);
+        OkHttpClient okHttpClient  = new OkHttpClient.Builder()
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10,TimeUnit.SECONDS)
+                .readTimeout(20, TimeUnit.SECONDS)
+                .build();
+        RequestBody fileBodyOne = RequestBody.create(MediaType.parse("image/png"), file);
 
-//        RequestBody requestBody=new MultipartBody.Builder()
-//                .setType(MultipartBody.FORM)
-//                .addFormDataPart("file","book_image",fileBody)
-//                .addFormDataPart("bookId",bookid)
-//                .build();
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("file", "head_image", fileBodyOne)
+                .addFormDataPart("bookId", bookid)
+                .build();
+        Request request = new Request.Builder()
+                .url("http://132.232.89.108:8081/upload/books")
+                .addHeader("cookie",p.mview.getCurrentSession())
+                .post(requestBody)
+                .build();
+        okhttp3.Call call = okHttpClient.newCall(request);
 
-//        RequestBody requestBody=RequestBody.create(okhttp3
-//                        .MediaType
-//                        .parse("application/json; charset=utf-8")
-//                ,route);
-
-        builder.setType(MultipartBody.FORM);
-
-        Call<Message> call=mainGetBookInterface.publishImage(builder.build());
-
-        call.enqueue(new Callback<Message>() {
+        call.enqueue(new okhttp3.Callback() {
             @Override
-            public void onResponse(Call<Message> call, Response<Message> response) {
-                //检测回调信息是否正确
-                Log.i("zzh", "response is "
-                        +String.valueOf(response.body()));
+            public void onFailure(okhttp3.Call call, IOException e) {
+                Log.i("zzh",e.toString());
             }
 
             @Override
-            public void onFailure(Call<Message> call, Throwable t) {
-                Log.i("zzh",t.toString());
+            public void onResponse(okhttp3.Call call, okhttp3.Response response) throws IOException {
+
             }
         });
     }
