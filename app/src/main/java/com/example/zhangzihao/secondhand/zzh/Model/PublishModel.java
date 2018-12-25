@@ -115,6 +115,10 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
         //处理url，
         String Path=getRealPathFromUri_AboveApi19(p.mview,uri);
 
+        if (Path==null)
+            //没选还传个屁
+            return;
+
         File file=new File(Path);
 
         RequestBody fileBody=RequestBody.create(MediaType.parse("image/png"),file);
@@ -165,6 +169,8 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
      */
     private String getRealPathFromUri_AboveApi19(Context context,Uri uri) {
         String imagePath=null;
+        if(null==uri)
+            return null;
         if (DocumentsContract.isDocumentUri(context, uri)) {
             String docId = DocumentsContract.getDocumentId(uri);
             if ("com.android.providers.media.documents".equals(uri.getAuthority())) {

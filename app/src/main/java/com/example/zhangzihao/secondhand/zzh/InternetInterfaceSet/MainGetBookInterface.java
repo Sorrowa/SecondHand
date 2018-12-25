@@ -40,7 +40,6 @@ public interface MainGetBookInterface {
     Call<Message> publishBook(@Body RequestBody body);
 
     @Headers({"Content-Type: application/json","Accept: application/json"})
-    @Multipart
     @POST("/upload/books")
     Call<Message> publishImage(@Body RequestBody body);
 }
