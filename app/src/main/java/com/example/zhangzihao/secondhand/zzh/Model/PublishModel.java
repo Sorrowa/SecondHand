@@ -126,7 +126,6 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
         RequestBody requestBody=new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("file","book_image",fileBody)
-                .addFormDataPart("bookId",bookid)
                 .build();
 
 //        RequestBody requestBody=RequestBody.create(okhttp3
@@ -134,7 +133,7 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
 //                        .parse("application/json; charset=utf-8")
 //                ,route);
 
-        Call<Message> call=mainGetBookInterface.publishImage(requestBody);
+        Call<Message> call=mainGetBookInterface.publishImage(bookid,requestBody);
 
         call.enqueue(new Callback<Message>() {
             @Override
@@ -178,7 +177,8 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
                 String selection = MediaStore.Images.Media._ID + "=" + id;
                 imagePath = getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, selection,context);
             } else if ("com.android.providers.downloads.documents".equals(uri.getAuthority())) {
-                Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(docId));
+                Uri contentUri = ContentUris.withAppendedId(
+                        Uri.parse("content://downloads/public_downloads"), Long.valueOf(docId));
                 imagePath = getImagePath(contentUri, null,context);
             }
         } else if ("content".equalsIgnoreCase(uri.getScheme())) {

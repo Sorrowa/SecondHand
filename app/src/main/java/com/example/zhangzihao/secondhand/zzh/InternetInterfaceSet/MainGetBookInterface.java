@@ -15,6 +15,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 
@@ -39,7 +40,8 @@ public interface MainGetBookInterface {
     @POST("/book/publish")
     Call<Message> publishBook(@Body RequestBody body);
 
+    @Multipart
     @Headers({"Content-Type: application/json","Accept: application/json"})
     @POST("/upload/books")
-    Call<Message> publishImage(@Body RequestBody body);
+    Call<Message> publishImage(@Part("bookId") String bookId,@Part("file") RequestBody body);
 }
