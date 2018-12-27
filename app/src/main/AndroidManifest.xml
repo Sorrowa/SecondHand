@@ -45,6 +45,9 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/TransparentTheme" />
+
+        <activity
+            android:name=".dyx.activity.BookActivity" />
         <activity
             android:name=".zzh.View.MyBook"
             android:launchMode="singleTask"

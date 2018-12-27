@@ -2,6 +2,7 @@ package com.example.zhangzihao.secondhand.zzh.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.zhangzihao.secondhand.JavaBean.Book;
 import com.example.zhangzihao.secondhand.R;
+import com.example.zhangzihao.secondhand.dyx.activity.BookActivity;
 import com.example.zhangzihao.secondhand.zzh.View.BookInfoActibity;
 
 import java.util.ArrayList;
@@ -51,8 +53,10 @@ public class MyAdapterForMainRecycleView extends RecyclerView.Adapter<MyAdapterF
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, BookInfoActibity.class);
-                intent.putExtra("book", books.get(position).getBookId());
+                Intent intent=new Intent(context, BookActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("book", books.get(position));
+                intent.putExtra("book_bundle", bundle);
                 context.startActivity(intent);
             }
         });

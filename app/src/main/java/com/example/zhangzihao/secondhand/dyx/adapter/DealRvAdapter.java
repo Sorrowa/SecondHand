@@ -16,15 +16,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.zhangzihao.secondhand.Base.URL;
 import com.example.zhangzihao.secondhand.JavaBean.Book;
 import com.example.zhangzihao.secondhand.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DealRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
-    private ArrayList<Book> mDate = new ArrayList<>();
+    private List<Book> mDate = new ArrayList<>();
     private Context mContext;
     private OnItemClickListener mOnClickListener;
+    private String mEmail;
+    /**
+     * 0: 没有登入
+     * 1: 已经登入
+     */
+    private int mState = 0;
 
     enum TYPE {
         NONE,
@@ -33,6 +41,7 @@ public class DealRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     public DealRvAdapter(Context context) {
         this.mContext = context;
+        this.mState = 0;
     }
 
 
@@ -40,13 +49,21 @@ public class DealRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         this.mOnClickListener = mOnClickListener;
     }
 
-    public void setData(ArrayList<Book> data) {
+    public void setData(List<Book> data, String email) {
         this.mDate = data;
+        this.mEmail = email;
+        mState = 1;
         notifyDataSetChanged();
     }
 
     public interface OnItemClickListener{
-        void onItemClickListener(int position);
+        void onItemClickListener(int position, Book book);
+    }
+
+    public void setEmptyData() {
+        this.mDate = new ArrayList<>();
+        mState = 0;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -62,16 +79,38 @@ public class DealRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if (holder instanceof NoneViewHolder) {
-            ((NoneViewHolder) holder).textView.setText("没有任何交易记录...");
+            if (mState == 0) {
+                ((NoneViewHolder) holder).textView.setText("没有登入...");
+            } else {
+                ((NoneViewHolder) holder).textView.setText("没有任何交易记录...");
+            }
         } else if (holder instanceof HaveViewHolder) {
             ((HaveViewHolder) holder).position = position;
             if (mDate.get(position).getImgPath() != null) {
-                Glide.with(mContext).load(mDate.get(position).getImgPath()).into(((HaveViewHolder) holder).image);
+                Glide.with(mContext).load(URL.IMGS + mDate.get(position).getImgPath()).into(((HaveViewHolder) holder).image);
             } else {
                 Glide.with(mContext).load(R.mipmap.ic_launcher).into(((HaveViewHolder) holder).image);
             }
             ((HaveViewHolder) holder).name.setText(mDate.get(position).getName());
             ((HaveViewHolder) holder).type.setText(mDate.get(position).getType());
+            if (mDate.get(position).getState() == 2) {
+                if (mDate.get(position).getEmail().equals(mEmail)) {
+                    ((HaveViewHolder) holder).confirm.setText("未确认...");
+                } else {
+                    ((HaveViewHolder) holder).confirm.setText("待确认...");
+                }
+                ((HaveViewHolder) holder).confirm.setTextColor(mContext.getResources().getColor(R.color.fragment_deal_no_confirm));
+            } else if (mDate.get(position).getState() == 3) {
+                ((HaveViewHolder) holder).confirm.setText("已确认...");
+                ((HaveViewHolder) holder).confirm.setTextColor(mContext.getResources().getColor(R.color.fragment_deal_confirmed));
+            }
+
+            if (mDate.get(position).getEmail().equals(mEmail)) {
+                ((HaveViewHolder) holder).owner.setText("(卖家)");
+            } else {
+                ((HaveViewHolder) holder).owner.setText("(买家)");
+            }
+
         }
 
     }
@@ -106,6 +145,8 @@ public class DealRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         ImageView image;
         TextView name;
         TextView type;
+        TextView confirm;
+        TextView owner;
         int position;
 
         HaveViewHolder(View itemView) {
@@ -114,12 +155,14 @@ public class DealRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             image = (ImageView) itemView.findViewById(R.id.deal_type_have_image);
             name = (TextView) itemView.findViewById(R.id.deal_type_have_name);
             type = (TextView) itemView.findViewById(R.id.deal_type_have_type);
+            confirm = (TextView) itemView.findViewById(R.id.adapter_comment_type_have_confirm);
+            owner = (TextView) itemView.findViewById(R.id.deal_type_have_owner);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (mOnClickListener != null) {
-                        mOnClickListener.onItemClickListener(position);
+                    if (mOnClickListener != null && mDate.get(position).getState() == 2 && mEmail.equals(mDate.get(position).getEmail())) {
+                        mOnClickListener.onItemClickListener(position, mDate.get(position));
                     }
                 }
             });

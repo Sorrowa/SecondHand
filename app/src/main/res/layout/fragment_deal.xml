@@ -10,26 +10,18 @@
         app:title="交易"
         android:id="@+id/fragment_deal_toolbar"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/fragment_deal_toolbar">
-        <TextView
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/fragment_deal_text"
-            android:text="@string/adapter_recycler_deal_type_none_no_sign"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:visibility="visible"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/fragment_deal_recyclerView"
-            android:visibility="invisible"/>
-    </RelativeLayout>
-
-
+            android:id="@+id/fragment_deal_refresh_layout"
+            android:layout_below="@id/fragment_deal_toolbar">
+            <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/fragment_deal_recyclerView" />
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </RelativeLayout>

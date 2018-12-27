@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.zhangzihao.secondhand.Base.BaseActivity;
+import com.example.zhangzihao.secondhand.dyx.presenter.DealPresenter;
+import com.example.zhangzihao.secondhand.dyx.view.DealFragment;
 import com.example.zhangzihao.secondhand.syf.fragment.InfoFragment;
 import com.example.zhangzihao.secondhand.zzh.Adapter.MainViewPagerAdapter;
 import com.example.zhangzihao.secondhand.zzh.MFragment.MainFragment;
@@ -65,6 +67,8 @@ public class MainActivity extends BaseActivity implements MainFragment.MainFragm
         mainFragment=new MainFragment();
         fragments.add(mainFragment);
         //todo:之后的碎片添加都做在这！！邓衍翔你看到了吗！！
+        DealFragment dealFragment = new DealFragment();
+        fragments.add(dealFragment);
 
         //个人信息界面fragment
         InfoFragment infoFragment = new InfoFragment();

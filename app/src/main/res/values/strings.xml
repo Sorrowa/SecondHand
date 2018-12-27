@@ -7,4 +7,15 @@
 
     <string name="adapter_recycler_deal_type_have_name">名字</string>
     <string name="adapter_recycler_deal_type_have_type">类型</string>
+
+    <string name="activity_book_toolbar_title">图书信息</string>
+    <string name="activity_book_card_title">图书信息</string>
+    <string name="activity_book_comment_title">评论</string>
+    <string name="activity_book_comment_submit">发表</string>
+    <string name="activity_book_comment_edit_hint">说点什么吧…</string>
+    <string name="activity_book_buy">购买</string>
+    <string name="activity_book_dialog_title">请确认…</string>
+
+    <string name="adapter_recycler_comment_type_none_text">暂无评论…</string>
+
 </resources>

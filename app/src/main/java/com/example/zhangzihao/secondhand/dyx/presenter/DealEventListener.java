@@ -8,5 +8,7 @@ package com.example.zhangzihao.secondhand.dyx.presenter;
 import com.example.zhangzihao.secondhand.dyx.base.IEventListener;
 
 public interface DealEventListener extends IEventListener {
-    void loadDealBook();
+    void loadDealBook(String email);
+
+    void confirmDeal(String session, Integer bookId);
 }

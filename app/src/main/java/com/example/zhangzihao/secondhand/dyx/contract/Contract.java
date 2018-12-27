@@ -11,19 +11,26 @@ import com.example.zhangzihao.secondhand.dyx.base.IPresenter;
 import com.example.zhangzihao.secondhand.dyx.base.IView;
 import com.example.zhangzihao.secondhand.dyx.presenter.DealEventListener;
 
-import java.util.ArrayList;
+
+import java.util.List;
 
 public interface Contract {
     interface IDealModel extends IModel {
-        void getDealFromNet();
+        void getDealFromNet(String email);
+
+        void confirmDeal(String session, Integer bookId);
     }
 
     interface IDealView extends IView<DealEventListener> {
-        void initRecyclerView(ArrayList<Book> list);
+        void initRecyclerView(List<Book> list);
+
+        void showSuccess(String msg);
     }
 
     interface IDealPresenter extends IPresenter<IDealView, IDealModel>  {
-        void setDealBook(ArrayList<Book> list);
+        void setDealBook(List<Book> list);
+
+        void showSuccess(String msg);
 
     }
 }

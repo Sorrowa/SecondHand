@@ -165,4 +165,22 @@
     <color name="color_submit_button_normal_press">#b3c60a</color>
     <!--blue-->
 
+
+    <!--red-->
+
+    <color name="activity_book_comment_submit_normal">#e63256</color>
+    <color name="activity_book_comment_submit_press">#e94c6c</color>
+
+
+    <color name="adapter_recycler_comment_text_background">#81ccc6c6</color>
+
+    <color name="adapter_recycler_comment_name_text_color">#151515</color>
+    <color name="adapter_recycler_comment_date_text_color">#5c5c5c</color>
+    <color name="adapter_recycler_comment_comment_text_color">#000000</color>
+    
+    
+    <color name="fragment_deal_no_confirm">#e94c6c</color>
+    <color name="fragment_deal_confirmed">#5c5c5c</color>
+    <color name="fragment_deal_confirm_background">#81e1dede</color>
+
 </resources>
