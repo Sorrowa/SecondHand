@@ -1,9 +1,14 @@
 package com.example.zhangzihao.secondhand.zzh.Model;
 
+import android.content.ContentUris;
+import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.util.Log;
 
 import com.example.zhangzihao.secondhand.JavaBean.Book;
@@ -16,9 +21,17 @@ import com.google.gson.Gson;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -101,47 +114,46 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
      * @param uri 图片uri
      */
     private void publishImage(String bookid, Uri uri) throws URISyntaxException {
-        MainGetBookInterface mainGetBookInterface=retrofit.create(MainGetBookInterface
-                .class);
         //处理url，
-        String imagePath=Tool.doForImageUrl(uri,p.mview);
+        String Path=getRealPathFromUri_AboveApi19(p.mview,uri);
 
-        Bitmap image= BitmapFactory.decodeFile(imagePath);
+        if (Path==null)
+            //没选还传个屁
+            return;
 
-        File file = new File(Environment
-                .getExternalStorageDirectory(), "image.jpg");
+        File file=new File(Path);
 
-        try {
-            BufferedOutputStream bufferedOutputStream=new BufferedOutputStream(
-                    new FileOutputStream(file));
-            image.compress(Bitmap.CompressFormat.JPEG, 100
-                    , bufferedOutputStream);
-            bufferedOutputStream.flush();
-            bufferedOutputStream.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+//        RequestBody fileBody=RequestBody.create(MediaType.parse("image/png"),file);
 
-        ImagePublish imagePublish=new ImagePublish(bookid
-                ,file);
 
-        Gson gson=new Gson();
-        String route=gson.toJson(imagePublish);
+        OkHttpClient okHttpClient  = new OkHttpClient.Builder()
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10,TimeUnit.SECONDS)
+                .readTimeout(20, TimeUnit.SECONDS)
+                .build();
+        RequestBody fileBodyOne = RequestBody.create(MediaType.parse("image/png"), file);
 
-        RequestBody requestBody=RequestBody.create(okhttp3
-                        .MediaType
-                        .parse("application/json; charset=utf-8")
-                ,route);
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("file", "head_image", fileBodyOne)
+                .addFormDataPart("bookId", bookid)
+                .build();
+        Request request = new Request.Builder()
+                .url("http://132.232.89.108:8081/upload/books")
+                .addHeader("cookie",p.mview.getCurrentSession())
+                .post(requestBody)
+                .build();
+        okhttp3.Call call = okHttpClient.newCall(request);
 
-        Call<Message> call=mainGetBookInterface.publishImage(requestBody);
-
-        call.enqueue(new Callback<Message>() {
+        call.enqueue(new okhttp3.Callback() {
             @Override
-            public void onResponse(Call<Message> call, Response<Message> response) {
+            public void onFailure(okhttp3.Call call, IOException e) {
+                Log.i("zzh",e.toString());
             }
 
             @Override
-            public void onFailure(Call<Message> call, Throwable t) {
+            public void onResponse(okhttp3.Call call, okhttp3.Response response) throws IOException {
+
             }
         });
     }
@@ -154,5 +166,47 @@ public class PublishModel implements BaseModel<PublishBookPresenter> {
     @Override
     public void detachPresenter() {
         p = null;
+    }
+
+    /**
+     * 获取图片的绝对路径
+     * @param context
+     * @param uri
+     * @return
+     */
+    private String getRealPathFromUri_AboveApi19(Context context,Uri uri) {
+        String imagePath=null;
+        if(null==uri)
+            return null;
+        if (DocumentsContract.isDocumentUri(context, uri)) {
+            String docId = DocumentsContract.getDocumentId(uri);
+            if ("com.android.providers.media.documents".equals(uri.getAuthority())) {
+                String id = docId.split(":")[1];
+                String selection = MediaStore.Images.Media._ID + "=" + id;
+                imagePath = getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, selection,context);
+            } else if ("com.android.providers.downloads.documents".equals(uri.getAuthority())) {
+                Uri contentUri = ContentUris.withAppendedId(
+                        Uri.parse("content://downloads/public_downloads"), Long.valueOf(docId));
+                imagePath = getImagePath(contentUri, null,context);
+            }
+        } else if ("content".equalsIgnoreCase(uri.getScheme())) {
+            imagePath = getImagePath(uri, null,context);
+        } else if ("file".equalsIgnoreCase(uri.getScheme())) {
+            imagePath = uri.getPath();
+        }
+        return imagePath;
+    }
+
+    private String getImagePath(Uri uri,String selection,Context context){
+        String path=null;
+        Cursor cursor=context.getContentResolver().query(uri
+                ,null,selection,null,null);
+        if(cursor!=null){
+            if(cursor.moveToFirst()){
+                path=cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+            }
+            cursor.close();
+        }
+        return path;
     }
 }

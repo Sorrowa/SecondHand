@@ -18,6 +18,8 @@ import com.example.zhangzihao.secondhand.R;
 import com.example.zhangzihao.secondhand.zzh.Presenter.BasePresenter;
 import com.example.zhangzihao.secondhand.zzh.Presenter.BookInfoPresenter;
 
+import static com.example.zhangzihao.secondhand.Base.URL.IMGS;
+
 public class BookInfoActibity extends AppCompatActivity implements BaseView<BookInfoPresenter>{
 
 
@@ -111,7 +113,9 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
         email.setText("联系人邮箱: "+book.getEmail());
         introduction.setText("图书基本介绍: "+book.getIntroduction());
         if (book.getImgPath()!=null){
-            Glide.with(this).load(book.getImgPath()).into(bookImage);
+            Glide.with(this)
+                    .load(IMGS+book.getImgPath())
+                    .into(bookImage);
         }
     }
 
