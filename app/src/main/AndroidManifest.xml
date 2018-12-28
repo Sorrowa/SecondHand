@@ -48,7 +48,12 @@
             android:theme="@style/TransparentTheme" />
 
         <activity
-            android:name=".dyx.activity.BookActivity" />
+            android:name=".dyx.activity.BookActivity"
+            android:launchMode="singleTask"/>
+        <activity
+            android:name=".dyx.activity.MyMessageActivity" />
+        <activity
+            android:name=".dyx.activity.MyBookActivity" />
         <activity
             android:name=".zzh.View.MyBook"
             android:launchMode="singleTask"

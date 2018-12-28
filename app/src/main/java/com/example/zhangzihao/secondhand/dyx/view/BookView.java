@@ -8,6 +8,7 @@ package com.example.zhangzihao.secondhand.dyx.view;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ import com.example.zhangzihao.secondhand.JavaBean.Book;
 import com.example.zhangzihao.secondhand.JavaBean.Comment;
 import com.example.zhangzihao.secondhand.JavaBean.Data;
 import com.example.zhangzihao.secondhand.R;
+import com.example.zhangzihao.secondhand.dyx.activity.MyBookActivity;
 import com.example.zhangzihao.secondhand.dyx.adapter.CommentRvAdapter;
 import com.example.zhangzihao.secondhand.dyx.base.impl.MvpActivityImpl;
 import com.example.zhangzihao.secondhand.dyx.contract.BookContract;
@@ -85,32 +87,10 @@ public class BookView extends MvpActivityImpl<BookEventListener> implements Book
         mBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MaterialDialog dialog = new MaterialDialog.Builder(activity)
-                        .title(R.string.activity_book_dialog_title)
-                        .content("确认购买《" + mBook.getName() + "》？")
-                        .positiveText("确认")
-                        .negativeText("取消")
-                        .onAny(new MaterialDialog.SingleButtonCallback() {
-                            @Override
-                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                switch (which) {
-                                    case NEGATIVE:
-                                        dialog.dismiss();
-                                        Toast.makeText(activity, "取消购买...", Toast.LENGTH_SHORT).show();
-                                        break;
-                                    case POSITIVE:
-                                        //购买图书
-                                        if (isLogin()) {
-                                            getListener().buyBook(mSession, mUserEmail, mBook.getBookId());
-                                        } else {
-                                            Toast.makeText(getActivity(), "请先登入...", Toast.LENGTH_SHORT).show();
-                                        }
-                                        break;
-                                }
-                            }
-                        })
-                        .build();
-                dialog.show();
+                Intent intent = new Intent(activity, MyBookActivity.class);
+                intent.putExtra("book_name", mBook.getName());
+                intent.putExtra("book_id", mBook.getBookId());
+                getActivity().startActivity(intent);
             }
         });
 

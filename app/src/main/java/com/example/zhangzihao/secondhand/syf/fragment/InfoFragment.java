@@ -26,6 +26,7 @@ import com.bumptech.glide.signature.ObjectKey;
 import com.example.zhangzihao.secondhand.Base.BaseActivity;
 import com.example.zhangzihao.secondhand.JavaBean.User;
 import com.example.zhangzihao.secondhand.R;
+import com.example.zhangzihao.secondhand.dyx.activity.MyMessageActivity;
 import com.example.zhangzihao.secondhand.syf.base.UserFragment;
 import com.example.zhangzihao.secondhand.syf.login.LoginActivity;
 import com.example.zhangzihao.secondhand.syf.modify.ModifyInfoActivity;
@@ -133,6 +134,8 @@ public class InfoFragment extends UserFragment implements InfoView {
                 /**
                  * dyx查看自己评论的跳转逻辑写到这里哦
                  */
+                Intent intent = new Intent(getActivity(), MyMessageActivity.class);
+                startActivity(intent);
             }
         });
 

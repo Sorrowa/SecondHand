@@ -8,6 +8,7 @@ package com.example.zhangzihao.secondhand.dyx.presenter;
 import android.util.Log;
 
 import com.example.zhangzihao.secondhand.JavaBean.Book;
+import com.example.zhangzihao.secondhand.JavaBean.DealBean;
 import com.example.zhangzihao.secondhand.dyx.base.impl.MvpPresenterImpl;
 import com.example.zhangzihao.secondhand.dyx.contract.Contract;
 
@@ -33,7 +34,7 @@ public class DealPresenter extends MvpPresenterImpl<Contract.IDealView, Contract
     };
 
     @Override
-    public void setDealBook(List<Book> list) {
+    public void setDealBook(List<DealBean> list) {
         mView.initRecyclerView(list);
     }
 

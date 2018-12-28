@@ -6,6 +6,7 @@ package com.example.zhangzihao.secondhand.dyx.contract;
 */
 
 import com.example.zhangzihao.secondhand.JavaBean.Book;
+import com.example.zhangzihao.secondhand.JavaBean.DealBean;
 import com.example.zhangzihao.secondhand.dyx.base.IModel;
 import com.example.zhangzihao.secondhand.dyx.base.IPresenter;
 import com.example.zhangzihao.secondhand.dyx.base.IView;
@@ -22,13 +23,13 @@ public interface Contract {
     }
 
     interface IDealView extends IView<DealEventListener> {
-        void initRecyclerView(List<Book> list);
+        void initRecyclerView(List<DealBean> list);
 
         void showSuccess(String msg);
     }
 
     interface IDealPresenter extends IPresenter<IDealView, IDealModel>  {
-        void setDealBook(List<Book> list);
+        void setDealBook(List<DealBean> list);
 
         void showSuccess(String msg);
 

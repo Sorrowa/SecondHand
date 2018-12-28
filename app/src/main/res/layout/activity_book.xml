@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:id="@+id/activity_book_buy"
-            android:text="@string/activity_book_buy"
+            android:text="@string/activity_book_change"
             android:padding="5dp"
             android:layout_marginEnd="5dp"
             android:background="@drawable/text_border"/>

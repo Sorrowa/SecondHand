@@ -18,13 +18,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.zhangzihao.secondhand.Base.URL;
 import com.example.zhangzihao.secondhand.JavaBean.Book;
+import com.example.zhangzihao.secondhand.JavaBean.DealBean;
 import com.example.zhangzihao.secondhand.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DealRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
-    private List<Book> mDate = new ArrayList<>();
+    private List<DealBean> mDate = new ArrayList<>();
     private Context mContext;
     private OnItemClickListener mOnClickListener;
     private String mEmail;
@@ -49,7 +50,7 @@ public class DealRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         this.mOnClickListener = mOnClickListener;
     }
 
-    public void setData(List<Book> data, String email) {
+    public void setData(List<DealBean> data, String email) {
         this.mDate = data;
         this.mEmail = email;
         mState = 1;
@@ -57,7 +58,7 @@ public class DealRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     public interface OnItemClickListener{
-        void onItemClickListener(int position, Book book);
+        void onItemClickListener(int position, DealBean book);
     }
 
     public void setEmptyData() {
@@ -94,23 +95,22 @@ public class DealRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             ((HaveViewHolder) holder).name.setText(mDate.get(position).getName());
             ((HaveViewHolder) holder).type.setText(mDate.get(position).getType());
             if (mDate.get(position).getState() == 2) {
-                if (mDate.get(position).getEmail().equals(mEmail)) {
-                    ((HaveViewHolder) holder).confirm.setText("未确认...");
-                } else {
-                    ((HaveViewHolder) holder).confirm.setText("待确认...");
-                }
+                ((HaveViewHolder) holder).confirm.setText("未确认...");
                 ((HaveViewHolder) holder).confirm.setTextColor(mContext.getResources().getColor(R.color.fragment_deal_no_confirm));
-            } else if (mDate.get(position).getState() == 3) {
+            } else if (mDate.get(position).getState() == 4) {
                 ((HaveViewHolder) holder).confirm.setText("已确认...");
+                ((HaveViewHolder) holder).confirm.setTextColor(mContext.getResources().getColor(R.color.fragment_deal_confirmed));
+            } else if (mDate.get(position).getState() == 3) {
+                ((HaveViewHolder) holder).confirm.setText("待确认...");
                 ((HaveViewHolder) holder).confirm.setTextColor(mContext.getResources().getColor(R.color.fragment_deal_confirmed));
             }
 
-            if (mDate.get(position).getEmail().equals(mEmail)) {
-                ((HaveViewHolder) holder).owner.setText("(卖家)");
-            } else {
-                ((HaveViewHolder) holder).owner.setText("(买家)");
+            if (mDate.get(position).getChangeBook() != null) {
+                //init change
+                Glide.with(mContext).load(URL.IMGS + mDate.get(position).getChangeBook().getImgPath()).into(((HaveViewHolder) holder).change_image);
+                ((HaveViewHolder) holder).change_name.setText(mDate.get(position).getChangeBook().getName());
+                ((HaveViewHolder) holder).change_type.setText(mDate.get(position).getChangeBook().getType());
             }
-
         }
 
     }
@@ -146,8 +146,12 @@ public class DealRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         TextView name;
         TextView type;
         TextView confirm;
-        TextView owner;
         int position;
+
+        ImageView change_image;
+        TextView change_name;
+        TextView change_type;
+
 
         HaveViewHolder(View itemView) {
             super(itemView);
@@ -156,7 +160,10 @@ public class DealRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             name = (TextView) itemView.findViewById(R.id.deal_type_have_name);
             type = (TextView) itemView.findViewById(R.id.deal_type_have_type);
             confirm = (TextView) itemView.findViewById(R.id.adapter_comment_type_have_confirm);
-            owner = (TextView) itemView.findViewById(R.id.deal_type_have_owner);
+
+            change_image = (ImageView) itemView.findViewById(R.id.deal_type_have_change_book_image);
+            change_name = (TextView) itemView.findViewById(R.id.deal_type_have_change_book_name);
+            change_type = (TextView) itemView.findViewById(R.id.deal_type_have_change_book_type);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.zhangzihao.secondhand.JavaBean.Book;
+import com.example.zhangzihao.secondhand.JavaBean.DealBean;
 import com.example.zhangzihao.secondhand.MainActivity;
 import com.example.zhangzihao.secondhand.R;
 import com.example.zhangzihao.secondhand.dyx.adapter.DealRvAdapter;
@@ -84,7 +85,7 @@ public class DealFragment extends MvpViewImpl<DealEventListener> implements Cont
         mAdapter = new DealRvAdapter(getActivity());
         mAdapter.setOnClickListener(new DealRvAdapter.OnItemClickListener() {
             @Override
-            public void onItemClickListener(int position, final Book book) {
+            public void onItemClickListener(int position, final DealBean book) {
                 MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
                         .positiveText("确认")
                         .negativeText("取消")
@@ -139,7 +140,7 @@ public class DealFragment extends MvpViewImpl<DealEventListener> implements Cont
     }
 
     @Override
-    public void initRecyclerView(List<Book> list) {
+    public void initRecyclerView(List<DealBean> list) {
         mAdapter.setData(list, mEmail);
         mRefreshLayout.finishRefresh();
     }

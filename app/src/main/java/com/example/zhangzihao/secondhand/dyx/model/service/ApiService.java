@@ -10,6 +10,8 @@ import com.example.zhangzihao.secondhand.Base.URL;
 import com.example.zhangzihao.secondhand.JavaBean.Book;
 import com.example.zhangzihao.secondhand.JavaBean.Comment;
 import com.example.zhangzihao.secondhand.JavaBean.Data;
+import com.example.zhangzihao.secondhand.JavaBean.DealBean;
+import com.example.zhangzihao.secondhand.JavaBean.MessageBean;
 import com.example.zhangzihao.secondhand.JavaBean.Response;
 
 import java.util.List;
@@ -29,7 +31,11 @@ public class ApiService {
         mRetrofit = client.getClient();
     }
 
-    public Observable<List<Book>> getDealBook(String email) {
+    public Observable<List<Book>> getMyBook(String session, String email) {
+        return mRetrofit.create(API.class).getMyBook(session, email);
+    }
+
+    public Observable<List<DealBean>> getDealBook(String email) {
         return mRetrofit.create(API.class).getDealBook(email);
     }
 
@@ -39,6 +45,10 @@ public class ApiService {
 
     public Observable<Response> buyBook(String session, String email, Integer bookId) {
         return mRetrofit.create(API.class).dealBook(session, email, bookId);
+    }
+
+    public Observable<Response> changeBook(String session, String email, Integer bookId, Integer changeId) {
+        return mRetrofit.create(API.class).changeBook(session, email, bookId, changeId);
     }
 
 
@@ -54,5 +64,14 @@ public class ApiService {
                 .build();
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), comment);
         return retrofit.create(API.class).insertComment(session, body);
+    }
+
+    public Observable<List<MessageBean>> getComments(String session, String email) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL.COMMENT)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
+        return retrofit.create(API.class).getMyComment(session, email);
     }
 }

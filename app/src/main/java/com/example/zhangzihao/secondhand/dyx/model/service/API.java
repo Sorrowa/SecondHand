@@ -8,6 +8,8 @@ package com.example.zhangzihao.secondhand.dyx.model.service;
 import com.example.zhangzihao.secondhand.JavaBean.Book;
 import com.example.zhangzihao.secondhand.JavaBean.Comment;
 import com.example.zhangzihao.secondhand.JavaBean.Data;
+import com.example.zhangzihao.secondhand.JavaBean.DealBean;
+import com.example.zhangzihao.secondhand.JavaBean.MessageBean;
 import com.example.zhangzihao.secondhand.JavaBean.Response;
 
 import java.util.List;
@@ -27,12 +29,18 @@ public interface API {
                               @Query("changer") String email,
                                  @Query("bookId") Integer id);
 
+    @GET("change")
+    Observable<Response> changeBook(@Header("cookie") String session,
+                                    @Query("changer") String email,
+                                    @Query("bookId") Integer id,
+                                    @Query("changeId") Integer changeId);
+
     @GET("confirm")
     Observable<Response> getConfirmBook(@Header("cookie") String session,
                                           @Query("bookId") Integer id);
 
     @GET("selectChanges")
-    Observable<List<Book>> getDealBook(@Query("email") String email);
+    Observable<List<DealBean>> getDealBook(@Query("email") String email);
 
     @GET("selectWithComments")
     Observable<Data> getBook(@Query("bookId") Integer bookId);
@@ -41,4 +49,12 @@ public interface API {
     @POST("insert")
     Observable<Integer> insertComment(@Header("cookie") String session,
                                       @Body RequestBody body);
+
+    @GET("selectByEmail")
+    Observable<List<Book>> getMyBook(@Header("cookie") String session,
+                                     @Query("email") String email);
+
+    @GET("myComments")
+    Observable<List<MessageBean>> getMyComment(@Header("cookie") String session,
+                                               @Query("email") String email);
 }
