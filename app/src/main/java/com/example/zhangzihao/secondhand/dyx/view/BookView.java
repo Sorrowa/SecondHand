@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
+import com.example.zhangzihao.secondhand.Base.URL;
 import com.example.zhangzihao.secondhand.JavaBean.Book;
 import com.example.zhangzihao.secondhand.JavaBean.Comment;
 import com.example.zhangzihao.secondhand.JavaBean.Data;
@@ -57,6 +59,7 @@ public class BookView extends MvpActivityImpl<BookEventListener> implements Book
     private TextView mType;
     private TextView mIntroduction;
     private TextView mEmail;
+    private ImageView mImage;
     private SmartRefreshLayout mRefreshLayout;
     private RecyclerView mRecyclerView;
     private String mUserEmail;
@@ -98,6 +101,7 @@ public class BookView extends MvpActivityImpl<BookEventListener> implements Book
         mType = (TextView) activity.findViewById(R.id.activity_book_book_type);
         mIntroduction = (TextView) activity.findViewById(R.id.activity_book_book_introduction);
         mEmail = (TextView) activity.findViewById(R.id.activity_book_email);
+        mImage = (ImageView) activity.findViewById(R.id.activity_book_book_image);
 
         //set book
         Bundle bundle = activity.getIntent().getBundleExtra("book_bundle");
@@ -181,6 +185,7 @@ public class BookView extends MvpActivityImpl<BookEventListener> implements Book
         mType.setText("图书类型：" + book.getType());
         mIntroduction.setText("简介：" + book.getIntroduction());
         mEmail.setText("发布者邮箱：" + book.getEmail());
+        Glide.with(getActivity()).load(URL.IMGS + book.getImgPath()).into(mImage);
     }
 
     private boolean isLogin() {
