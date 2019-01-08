@@ -1,30 +1,35 @@
 package com.example.zhangzihao.secondhand.zzh.View;
 
+import android.content.SharedPreferences;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
 import com.example.zhangzihao.secondhand.JavaBean.Book;
 import com.example.zhangzihao.secondhand.R;
 import com.example.zhangzihao.secondhand.zzh.Presenter.BasePresenter;
 import com.example.zhangzihao.secondhand.zzh.Presenter.BookInfoPresenter;
 
+import java.util.Objects;
+
 import static com.example.zhangzihao.secondhand.Base.URL.IMGS;
 
 public class BookInfoActibity extends AppCompatActivity implements BaseView<BookInfoPresenter>{
 
-
-    //记录当前的评分等级
-    private float ratingNum;
 
     private int bookId;
 
@@ -37,18 +42,18 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
     private TextView email;
     private TextView introduction;
 
-    private Button agreeButton;
-    private Button disagreeButton;
 
     private Toolbar toolbar;
     //打分控件
     private RatingBar ratingBar;
 
-    //显示的书籍
-    private Book book;
 
     Handler handler=new Handler();
 
+    private Book mBook;
+    private TextView mDown;
+    private String mSession;
+    private String mUserEmail;
 
 
     @Override
@@ -67,27 +72,40 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
 
         initeBook();
 
-        initeRating();
+        mDown = (TextView) findViewById(R.id.book_info_down);
 
-        //addView();
-    }
-
-    /**
-     * 初始化评分系统
-     */
-    private void initeRating() {
-        ratingBar.setOnRatingBarChangeListener(new RatingBar
-                .OnRatingBarChangeListener() {
+        mDown.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating
-                    , boolean fromUser) {
-                if (fromUser){
-                    Log.d("zzh","ok the rating is "+rating);
-                    ratingNum=rating;
+            public void onClick(View v) {
+                if (isLogin() && mBook != null) {
+                    MaterialDialog dialog = new MaterialDialog.Builder(BookInfoActibity.this)
+                            .positiveText("确定")
+                            .negativeText("取消")
+                            .content("是否下架《" + mBook.getName() +"》")
+                            .title("请确认!")
+                            .onAny(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                    switch (which) {
+                                        case POSITIVE:
+                                            presenter.downBook(mSession, mBook.getBookId());
+                                            break;
+                                        case NEGATIVE:
+                                            Toast.makeText(BookInfoActibity.this, "取消下架", Toast.LENGTH_SHORT).show();
+                                            break;
+                                    }
+                                }
+                            })
+                            .build();
+                    dialog.show();
+                } else {
+                    Toast.makeText(BookInfoActibity.this, "出错了...", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
+
+
 
     /**
      * 初始化标题栏
@@ -108,6 +126,7 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
      * 使用book填充view
      */
     private void addView(Book book) {
+        mBook = book;
         name.setText("图书名称: "+book.getName());
         type.setText("图书类型: "+book.getType());
         email.setText("联系人邮箱: "+book.getEmail());
@@ -135,11 +154,7 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
         email=findViewById(R.id.book_info_email);
         introduction=findViewById(R.id.book_info_introduction);
         toolbar=findViewById(R.id.info_toolbar);
-        ratingBar=findViewById(R.id.ratingBar);
         bookImage=findViewById(R.id.image_book);
-
-//        agreeButton=findViewById(R.id.agree_button);
-//        disagreeButton=findViewById(R.id.disagree_button);
     }
 
 
@@ -187,5 +202,15 @@ public class BookInfoActibity extends AppCompatActivity implements BaseView<Book
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private boolean isLogin() {
+        SharedPreferences pref = Objects.requireNonNull(this.getSharedPreferences("user_data",MODE_PRIVATE ));
+        return (mSession = pref.getString("session", null)) != null && (mUserEmail = pref.getString("email",null)) != null;
+    }
+
+    public void show(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        finish();
     }
 }

@@ -57,4 +57,8 @@ public interface API {
     @GET("myComments")
     Observable<List<MessageBean>> getMyComment(@Header("cookie") String session,
                                                @Query("email") String email);
+
+    @GET("delete")
+    Observable<Response> downBook(@Header("cookie") String session,
+                                  @Query("bookId") Integer boookId);
 }

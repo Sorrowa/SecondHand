@@ -32,4 +32,6 @@
 
     <string name="activity_my_message_title">我的评论</string>
 
+    <string name="book_info_two_down">下架</string>
+
 </resources>

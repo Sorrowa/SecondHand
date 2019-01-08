@@ -3,9 +3,14 @@ package com.example.zhangzihao.secondhand.zzh.Model;
 import android.util.Log;
 
 import com.example.zhangzihao.secondhand.JavaBean.Book;
+import com.example.zhangzihao.secondhand.dyx.model.service.ApiService;
 import com.example.zhangzihao.secondhand.zzh.InternetInterfaceSet.MainGetBookInterface;
 import com.example.zhangzihao.secondhand.zzh.Presenter.BookInfoPresenter;
 
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -70,5 +75,34 @@ public class BookInfoModel implements BaseModel <BookInfoPresenter>{
     @Override
     public void detachPresenter() {
         presenter=null;
+    }
+
+
+    public void downBook(String session, Integer bookId) {
+        ApiService service = new ApiService();
+        service.downBook(session, bookId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<com.example.zhangzihao.secondhand.JavaBean.Response>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(com.example.zhangzihao.secondhand.JavaBean.Response response) {
+                        presenter.showSuccess(response.getMsg());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

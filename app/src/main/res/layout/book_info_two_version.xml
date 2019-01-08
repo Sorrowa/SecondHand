@@ -35,7 +35,19 @@
                 android:id="@+id/info_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
-                app:layout_collapseMode="pin"/>
+                app:layout_collapseMode="pin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:id="@+id/book_info_down"
+                    android:text="@string/book_info_two_down"
+                    android:padding="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:textColor="#000000"
+                    android:background="@drawable/text_border"/>
+            </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -109,49 +121,8 @@
 
             </android.support.v7.widget.CardView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="请打分:"
-                    android:textSize="19sp"
-                    android:layout_marginStart="30dp"/>
-
-                <RatingBar
-                    android:id="@+id/ratingBar"
-                    android:layout_margin="15dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-
-            </LinearLayout>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:paddingBottom="20dp"
-                app:cardCornerRadius="10dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="之后会改成list显示的评论内容"
-                    android:textSize="29sp"
-                    android:layout_gravity="center"
-                    android:gravity="center"/>
-
-
-            </android.support.v7.widget.CardView>
-
         </LinearLayout>
+
 
     </android.support.v4.widget.NestedScrollView>
 

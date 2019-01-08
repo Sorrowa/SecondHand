@@ -74,4 +74,9 @@ public class ApiService {
                 .build();
         return retrofit.create(API.class).getMyComment(session, email);
     }
+
+
+    public Observable<Response> downBook(String session, Integer bookId) {
+        return mRetrofit.create(API.class).downBook(session, bookId);
+    }
 }

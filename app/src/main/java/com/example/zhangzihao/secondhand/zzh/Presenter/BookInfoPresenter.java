@@ -63,4 +63,13 @@ public class BookInfoPresenter implements BasePresenter<BookInfoActibity> {
     public void detachAll() {
         infoModel.detachPresenter();
     }
+
+    public void downBook(String session, Integer bookId) {
+        infoModel.downBook(session, bookId);
+    }
+
+
+    public void showSuccess(String msg) {
+        v.show(msg);
+    }
 }
