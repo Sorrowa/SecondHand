@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.android.support:support-v4-27.1.1">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/56adb45e9bcfa3ee570d5df560aed6fb/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/56adb45e9bcfa3ee570d5df560aed6fb/jars/classes.jar!/" />
+      <root url="jar://D:/AndroidStudioSDK/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/dee070f21c8a3715d1e2c0faeefd4ffb/jars/classes.jar!/" />
+      <root url="file://D:/AndroidStudioSDK/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/dee070f21c8a3715d1e2c0faeefd4ffb/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.support/support-v4/27.1.1/5b8f86fea035328fc9e8c660773037a3401ce25f/support-v4-27.1.1-sources.jar!/" />
+      <root url="jar://D:/AndroidStudioSDK/.gradle/caches/modules-2/files-2.1/com.android.support/support-v4/27.1.1/5b8f86fea035328fc9e8c660773037a3401ce25f/support-v4-27.1.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

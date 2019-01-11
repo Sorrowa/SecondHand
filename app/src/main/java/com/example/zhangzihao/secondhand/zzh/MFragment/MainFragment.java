@@ -171,6 +171,21 @@ public class MainFragment extends Fragment {
                         .getWindowToken(),
                 0);
         //meditText.clearFocus();
+        //todo:重新加载book信息
+        reSetBookInfo();
+        //meditText.clearFocus();
+        String content=getEdit();
+        tool.seekForBookInfo(content);
+        meditText.clearFocus();
+    }
+
+    /**
+     * 在重新载入fragment的时候加载内容
+     */
+    private void reSetBookInfo() {
+        ArrayList<Book> books1=new ArrayList<>();
+        books1.addAll(books);
+        setBookList(books1);
     }
 
     /**

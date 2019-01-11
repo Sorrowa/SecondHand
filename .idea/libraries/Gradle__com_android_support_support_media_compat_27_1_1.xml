@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.android.support:support-media-compat-27.1.1">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/33b6030c973f3c31f1db46757b3142c4/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/33b6030c973f3c31f1db46757b3142c4/res" />
+      <root url="jar://D:/AndroidStudioSDK/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/9e61868c938d3c56164218e908ed1124/jars/classes.jar!/" />
+      <root url="file://D:/AndroidStudioSDK/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/9e61868c938d3c56164218e908ed1124/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.support/support-media-compat/27.1.1/3ab3f968d7cd675d2f97e67a3e9fc0ac63618f46/support-media-compat-27.1.1-sources.jar!/" />
+      <root url="jar://D:/AndroidStudioSDK/.gradle/caches/modules-2/files-2.1/com.android.support/support-media-compat/27.1.1/3ab3f968d7cd675d2f97e67a3e9fc0ac63618f46/support-media-compat-27.1.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -11,7 +11,7 @@
         android:id="@+id/mainToolbar"
         app:title="主页"
         app:titleMarginStart="160dp"
-        android:background="@color/bisque"
+        android:background="@color/lightskyblue"
         >
 
         <LinearLayout

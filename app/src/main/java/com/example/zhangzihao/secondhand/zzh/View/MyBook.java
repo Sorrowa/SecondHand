@@ -28,6 +28,12 @@ public class MyBook extends BaseActivity implements BaseView<MyBookPresenter> {
     private ArrayList<Book> books = new ArrayList<>();
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        initeRecycleView();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_book);

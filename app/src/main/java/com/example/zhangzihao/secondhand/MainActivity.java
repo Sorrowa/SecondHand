@@ -67,12 +67,13 @@ public class MainActivity extends BaseActivity implements MainFragment.MainFragm
         mainFragment=new MainFragment();
         fragments.add(mainFragment);
         //todo:之后的碎片添加都做在这！！邓衍翔你看到了吗！！
-        DealFragment dealFragment = new DealFragment();
-        fragments.add(dealFragment);
 
         //个人信息界面fragment
         InfoFragment infoFragment = new InfoFragment();
         fragments.add(infoFragment);
+
+        DealFragment dealFragment = new DealFragment();
+        fragments.add(dealFragment);
 
         //以上
         MainViewPagerAdapter adapter=new MainViewPagerAdapter(getSupportFragmentManager()

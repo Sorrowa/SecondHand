@@ -7,7 +7,10 @@
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:title="交易"
+        app:title="我的交易"
+        app:titleMarginTop="20dp"
+        app:titleMarginStart="160dp"
+        android:background="@color/lightskyblue"
         android:id="@+id/fragment_deal_toolbar"/>
 
         <com.scwang.smartrefresh.layout.SmartRefreshLayout
