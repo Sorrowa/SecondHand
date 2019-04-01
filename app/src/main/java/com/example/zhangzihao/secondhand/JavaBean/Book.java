@@ -14,7 +14,7 @@ public class Book implements Parcelable {
     private String type;//图书类型
     private int state;//图书状态
     private String introduction;//简介
-    private Date date;//发布日期
+    //private Date date;//发布日期
     private String imgPath;
     private String imgPath2;
     private String imgPath3;
@@ -111,9 +111,9 @@ public class Book implements Parcelable {
         return introduction;
     }
 
-    public Date getDate() {
-        return date;
-    }
+//    public Date getDate() {
+//        return date;
+//    }
 
     public String getImgPath() {
         return imgPath;
@@ -163,9 +163,9 @@ public class Book implements Parcelable {
         this.introduction = introduction;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+//    public void setDate(Date date) {
+//        this.date = date;
+//    }
 
     public void setImgPath(String imgPath) {
         this.imgPath = imgPath;

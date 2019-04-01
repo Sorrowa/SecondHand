@@ -42,7 +42,7 @@ public class BookInfoModel implements BaseModel <BookInfoPresenter>{
                 //Log.d("zzh",""+book1.getName());
                 book.setBookId(book1.getBookId());
                 book.setBad(book1.getBad());
-                book.setDate(book1.getDate());
+//                book.setDate(book1.getDate());
                 book.setEmail(book1.getEmail());
                 book.setGood(book1.getGood());
                 book.setImgPath(book1.getImgPath());
